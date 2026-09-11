@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "profile_id": "workday_informed",
+  "display_name": "Workday-informed workflow",
+  "platform": "Workday Recruiting",
+  "disclaimer": "Platform-informed screening simulation based on public Workday documentation. The Job Application business process is tenant-configured; no Workday ranking is reproduced.",
+  "emphasis": ["structured application completeness", "correctly parsed employment history", "application questions", "Review and Screen subprocesses", "Move Forward or Decline", "disposition support", "optional prioritisation"],
+  "report_sections_emphasised": ["eligibility", "parseability", "field_consistency", "requirement_coverage"],
+  "scenarios": [
+    {"schema_version": "2.0.0", "scenario_id": "wd-review", "title": "Standard Review subprocess", "description": "Application enters Review; an authorised reviewer inspects resume and cover letter and selects Move Forward or Decline.", "delivery_label": "DOCUMENTED", "claim_ids": ["WD-C01", "WD-C02"], "emphasis": ["parsed fields consistent with resume"]},
+    {"schema_version": "2.0.0", "scenario_id": "wd-screen", "title": "Screen or Assessment subprocess", "description": "Configured subprocesses filter against basic criteria or gather assessment results before a human decision.", "delivery_label": "CONFIGURATION-DEPENDENT", "claim_ids": ["WD-C01"], "emphasis": ["explicit qualification evidence"]},
+    {"schema_version": "2.0.0", "scenario_id": "wd-questionnaire", "title": "Configured questionnaire evaluation", "description": "Questionnaire answers and scores can feed condition rules that automatically route, advance or decline.", "delivery_label": "CONFIGURATION-DEPENDENT", "claim_ids": ["WD-C03"], "emphasis": ["truthful, complete answers"]},
+    {"schema_version": "2.0.0", "scenario_id": "wd-prioritisation", "title": "Optional AI-supported prioritisation", "description": "Candidate Skills Match or separately purchased HiredScore may prioritise or grade applicants with explanations; humans decide.", "delivery_label": "OPTIONAL", "claim_ids": ["WD-C05", "WD-C06", "WD-C04"], "emphasis": ["explicit skills and qualifications in text"]}
+  ]
+}

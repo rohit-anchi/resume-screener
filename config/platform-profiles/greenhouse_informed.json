@@ -1,0 +1,16 @@
+{
+  "schema_version": "2.0.0",
+  "profile_id": "greenhouse_informed",
+  "display_name": "Greenhouse-informed workflow",
+  "platform": "Greenhouse",
+  "disclaimer": "Platform-informed screening simulation based on public Greenhouse documentation. This is not a Greenhouse score and does not reproduce any employer's configuration.",
+  "emphasis": ["application question responses", "structured job criteria", "recruiter Application Review", "separation of resume screening from interview scorecards"],
+  "report_sections_emphasised": ["eligibility", "requirement_coverage", "evidence", "verification_questions"],
+  "scenarios": [
+    {"schema_version": "2.0.0", "scenario_id": "gh-manual", "title": "Manual recruiter review in Application Review", "description": "Application Review is the first stage; a recruiter views documents and answers and advances or rejects.", "delivery_label": "DOCUMENTED", "claim_ids": ["GH-C04", "GH-C03"], "emphasis": ["document readability", "answers visible to recruiter"]},
+    {"schema_version": "2.0.0", "scenario_id": "gh-structured", "title": "Review using structured application criteria", "description": "Recruiters may filter by exact keywords, tags and custom fields; retrieval affects visibility but is not rejection.", "delivery_label": "DOCUMENTED", "claim_ids": ["GH-C03"], "emphasis": ["explicit terminology matching public requirements"]},
+    {"schema_version": "2.0.0", "scenario_id": "gh-rules", "title": "Employer-configured eligibility screening", "description": "On applicable tiers, configured answers to job-post questions can auto-tag, auto-advance or auto-reject.", "delivery_label": "OPTIONAL", "claim_ids": ["GH-C02"], "emphasis": ["truthful, exact answers to eligibility questions"]},
+    {"schema_version": "2.0.0", "scenario_id": "gh-matching", "title": "Optional Talent Matching (Real Talent add-on)", "description": "If licensed and enabled, explained AI matching against recruiter-calibrated criteria supports prioritisation; it cannot advance or reject.", "delivery_label": "OPTIONAL", "claim_ids": ["GH-C05"], "emphasis": ["evidence for calibrated skills, titles, experience"]},
+    {"schema_version": "2.0.0", "scenario_id": "gh-scorecard", "title": "Interview-stage scorecard preparation", "description": "Scorecards capture human interview feedback against predetermined attributes; they are not resume screening.", "delivery_label": "DOCUMENTED", "claim_ids": ["GH-C04"], "emphasis": ["interview-readiness areas"]}
+  ]
+}

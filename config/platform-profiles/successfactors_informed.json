@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "profile_id": "successfactors_informed",
+  "display_name": "SAP SuccessFactors-informed workflow",
+  "platform": "SAP SuccessFactors Recruiting",
+  "disclaimer": "Platform-informed screening simulation based on public SAP documentation. AI-assisted screening is licensed and configured separately; it is not assumed to be enabled.",
+  "emphasis": ["candidate and requisition fields", "screening questions", "candidate statuses", "required skills", "related skills", "recruiter review", "optional skills matching"],
+  "report_sections_emphasised": ["eligibility", "requirement_coverage", "skills", "evidence"],
+  "scenarios": [
+    {"schema_version": "2.0.0", "scenario_id": "sf-traditional", "title": "Traditional recruiter screening", "description": "Recruiters review the application in the Applicant Workbench and move it through configured statuses.", "delivery_label": "DOCUMENTED", "claim_ids": ["SAP-C04", "SAP-C05", "SAP-C01"], "emphasis": ["complete profile and application fields"]},
+    {"schema_version": "2.0.0", "scenario_id": "sf-prescreen", "title": "Employer-configured screening criteria", "description": "Prescreen questions may award weighted points, apply a threshold or disqualify based on answers.", "delivery_label": "CONFIGURATION-DEPENDENT", "claim_ids": ["SAP-C03"], "emphasis": ["truthful prescreen answers"]},
+    {"schema_version": "2.0.0", "scenario_id": "sf-parsing", "title": "Candidate profile from parsed resume", "description": "Classic parsing populates standard profile fields; it is not matching or ranking.", "delivery_label": "DOCUMENTED", "claim_ids": ["SAP-C02"], "emphasis": ["standard-field parseability"]},
+    {"schema_version": "2.0.0", "scenario_id": "sf-ai", "title": "Optional AI-assisted applicant screening", "description": "If licensed and eligible, Skill Compatibility shows matching, relevant and unmatched skills to support recruiter judgment.", "delivery_label": "OPTIONAL", "claim_ids": ["SAP-C06"], "emphasis": ["explicit skill evidence"]}
+  ]
+}

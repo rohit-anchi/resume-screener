@@ -1,0 +1,111 @@
+{
+  "$defs": {
+    "QuestionAudience": {
+      "enum": [
+        "recruiter_screen",
+        "hiring_manager",
+        "evidence_verification",
+        "seniority_and_scope",
+        "gap_focused",
+        "employer_and_domain"
+      ],
+      "title": "QuestionAudience",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "question_id": {
+      "title": "Question Id",
+      "type": "string"
+    },
+    "audience": {
+      "$ref": "#/$defs/QuestionAudience"
+    },
+    "question": {
+      "title": "Question",
+      "type": "string"
+    },
+    "why_likely": {
+      "title": "Why Likely",
+      "type": "string"
+    },
+    "requirement_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Requirement Id"
+    },
+    "requirement_text": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Requirement Text"
+    },
+    "trigger": {
+      "title": "Trigger",
+      "type": "string"
+    },
+    "trigger_kind": {
+      "enum": [
+        "evidence",
+        "gap",
+        "ambiguity",
+        "scope",
+        "domain",
+        "eligibility"
+      ],
+      "title": "Trigger Kind",
+      "type": "string"
+    },
+    "suggested_answer_structure": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Suggested Answer Structure",
+      "type": "array"
+    },
+    "follow_ups": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Follow Ups",
+      "type": "array"
+    },
+    "note": {
+      "default": "Prepare your own answer from real experience. No answer content is generated for you.",
+      "title": "Note",
+      "type": "string"
+    }
+  },
+  "required": [
+    "question_id",
+    "audience",
+    "question",
+    "why_likely",
+    "requirement_id",
+    "requirement_text",
+    "trigger",
+    "trigger_kind",
+    "suggested_answer_structure"
+  ],
+  "title": "InterviewQuestion",
+  "type": "object",
+  "$id": "urn:screener:InterviewQuestion:2.0.0"
+}

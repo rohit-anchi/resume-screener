@@ -1,0 +1,13 @@
+{
+  "schema_version": "2.0.0",
+  "profile_id": "platform_neutral",
+  "display_name": "Platform-neutral screening",
+  "platform": null,
+  "disclaimer": "Evidence-based application readiness assessment. No employer or platform algorithm is simulated.",
+  "emphasis": ["requirement coverage", "evidence traceability", "parseability", "missing evidence"],
+  "report_sections_emphasised": ["eligibility", "requirement_coverage", "evidence", "parseability"],
+  "scenarios": [
+    {"schema_version": "2.0.0", "scenario_id": "neutral-manual", "title": "Manual recruiter review", "description": "A recruiter reads the resume and application answers and decides the next step.", "delivery_label": "COMMON PRACTICE", "claim_ids": ["GH-C04", "LV-C04", "WD-C01", "SAP-C04"], "emphasis": ["readability", "clear chronology"]},
+    {"schema_version": "2.0.0", "scenario_id": "neutral-eligibility", "title": "Employer-configured eligibility questions", "description": "Explicit answers to employer questions are evaluated against declared rules; the resume is not used for eligibility.", "delivery_label": "CONFIGURATION-DEPENDENT", "claim_ids": ["GH-C02", "LV-C05", "WD-C03", "SAP-C03"], "emphasis": ["answer accuracy"]}
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "$defs": {
+    "AtsPlatform": {
+      "enum": [
+        "greenhouse",
+        "lever",
+        "workday",
+        "sap_successfactors",
+        "ashby",
+        "other",
+        "unknown"
+      ],
+      "title": "AtsPlatform",
+      "type": "string"
+    },
+    "AtsSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "signal_type": {
+          "enum": [
+            "application_link",
+            "document_text",
+            "listing_metadata"
+          ],
+          "title": "Signal Type",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "platform": {
+          "$ref": "#/$defs/AtsPlatform"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "weight": {
+          "default": 1.0,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "signal_type",
+        "value",
+        "platform"
+      ],
+      "title": "AtsSignal",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "listing_source": {
+      "default": "linkedin",
+      "title": "Listing Source",
+      "type": "string"
+    },
+    "application_platform": {
+      "$ref": "#/$defs/AtsPlatform"
+    },
+    "application_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Application Url"
+    },
+    "confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "signals": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AtsSignal"
+      },
+      "title": "Signals",
+      "type": "array"
+    },
+    "has_approved_knowledge_profile": {
+      "title": "Has Approved Knowledge Profile",
+      "type": "boolean"
+    },
+    "selected_profile_id": {
+      "title": "Selected Profile Id",
+      "type": "string"
+    },
+    "profile_selection_reason": {
+      "title": "Profile Selection Reason",
+      "type": "string"
+    },
+    "responses_managed_off_platform": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Responses Managed Off Platform"
+    }
+  },
+  "required": [
+    "application_platform",
+    "confidence",
+    "has_approved_knowledge_profile",
+    "selected_profile_id",
+    "profile_selection_reason"
+  ],
+  "title": "AtsDetection",
+  "type": "object",
+  "$id": "urn:screener:AtsDetection:2.0.0"
+}

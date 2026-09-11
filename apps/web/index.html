@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Application readiness assessment</title>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<header>
+  <h1>Evidence-based, platform-informed application readiness assessment</h1>
+  <p class="sub">Upload your resume once, then screen it against a LinkedIn job-details PDF. This tool does not reproduce any employer's ATS or predict a hiring decision.</p>
+</header>
+
+<main>
+  <aside>
+    <section class="card" id="resume-card">
+      <h2>1 · Your resume</h2>
+      <div id="resume-empty">
+        <label class="drop" for="resume-file">
+          <strong>Add your resume</strong>
+          <span>PDF or DOCX, up to 10 MB</span>
+          <input type="file" id="resume-file" accept=".pdf,.docx" hidden>
+        </label>
+      </div>
+      <div id="resume-present" hidden>
+        <div class="file-row">
+          <div>
+            <div class="fname" id="resume-name">—</div>
+            <div class="meta" id="resume-meta">—</div>
+          </div>
+        </div>
+        <div id="resume-parse" class="parse"></div>
+        <div class="btn-row">
+          <button id="resume-replace" class="secondary">Replace</button>
+          <button id="resume-delete" class="danger">Delete</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2 · Job screener</h2>
+      <label class="drop small" for="job-file">
+        <strong>Add LinkedIn job PDF</strong>
+        <span>Save the LinkedIn job page as PDF</span>
+        <input type="file" id="job-file" accept=".pdf" hidden multiple>
+      </label>
+      <ul id="job-list" class="job-list"></ul>
+      <div class="field">
+        <label for="mode">View</label>
+        <select id="mode">
+          <option value="candidate">Candidate</option>
+          <option value="recruiter_assist">Recruiter assist</option>
+        </select>
+      </div>
+      <div class="btn-row">
+        <button id="run" disabled>Screen resume against job</button>
+      </div>
+      <div class="btn-row">
+        <button id="run-multi" class="secondary" disabled>Multi-job review</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3 · LinkedIn profile (optional)</h2>
+      <label class="drop small" for="profile-file">
+        <strong>Add profile PDF</strong>
+        <span>Your own LinkedIn profile export</span>
+        <input type="file" id="profile-file" accept=".pdf" hidden>
+      </label>
+      <label class="check"><input type="checkbox" id="profile-auth"> I authorise comparison of this document I supplied</label>
+      <div class="btn-row">
+        <button id="run-profile" class="secondary" disabled>Compare with resume</button>
+      </div>
+    </section>
+  </aside>
+
+  <section id="results" class="results">
+    <div id="status" class="status">Add a resume and a LinkedIn job PDF to begin.</div>
+    <div id="summary" class="summary" hidden></div>
+    <div id="report" class="report"></div>
+  </section>
+</main>
+
+<footer>
+  <span id="versions"></span>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

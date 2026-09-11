@@ -1,0 +1,120 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "document_id": {
+      "title": "Document Id",
+      "type": "string"
+    },
+    "text_extraction_success": {
+      "title": "Text Extraction Success",
+      "type": "boolean"
+    },
+    "image_only_content": {
+      "title": "Image Only Content",
+      "type": "boolean"
+    },
+    "ocr_required": {
+      "title": "Ocr Required",
+      "type": "boolean"
+    },
+    "ocr_available": {
+      "default": false,
+      "title": "Ocr Available",
+      "type": "boolean"
+    },
+    "name_extracted": {
+      "title": "Name Extracted",
+      "type": "boolean"
+    },
+    "contact_fields_extracted": {
+      "title": "Contact Fields Extracted",
+      "type": "boolean"
+    },
+    "employment_history_extracted": {
+      "title": "Employment History Extracted",
+      "type": "boolean"
+    },
+    "dates_extracted": {
+      "title": "Dates Extracted",
+      "type": "boolean"
+    },
+    "education_extracted": {
+      "title": "Education Extracted",
+      "type": "boolean"
+    },
+    "certifications_extracted": {
+      "title": "Certifications Extracted",
+      "type": "boolean"
+    },
+    "section_order_clear": {
+      "title": "Section Order Clear",
+      "type": "boolean"
+    },
+    "table_or_column_interference": {
+      "title": "Table Or Column Interference",
+      "type": "boolean"
+    },
+    "chronology_conflicts": {
+      "title": "Chronology Conflicts",
+      "type": "integer"
+    },
+    "missing_dates": {
+      "title": "Missing Dates",
+      "type": "integer"
+    },
+    "duplicate_content": {
+      "title": "Duplicate Content",
+      "type": "boolean"
+    },
+    "injection_suspected": {
+      "title": "Injection Suspected",
+      "type": "boolean"
+    },
+    "hidden_text_suspected": {
+      "title": "Hidden Text Suspected",
+      "type": "boolean"
+    },
+    "parseability_score": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Parseability Score",
+      "type": "number"
+    },
+    "notes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "document_id",
+    "text_extraction_success",
+    "image_only_content",
+    "ocr_required",
+    "name_extracted",
+    "contact_fields_extracted",
+    "employment_history_extracted",
+    "dates_extracted",
+    "education_extracted",
+    "certifications_extracted",
+    "section_order_clear",
+    "table_or_column_interference",
+    "chronology_conflicts",
+    "missing_dates",
+    "duplicate_content",
+    "injection_suspected",
+    "hidden_text_suspected",
+    "parseability_score"
+  ],
+  "title": "ParseabilityReport",
+  "type": "object",
+  "$id": "urn:screener:ParseabilityReport:2.0.0"
+}

@@ -1,0 +1,78 @@
+{
+  "$defs": {
+    "EligibilityFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/EligibilityStatus"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        },
+        "answer_used": {
+          "default": null,
+          "title": "Answer Used"
+        }
+      },
+      "required": [
+        "rule_id",
+        "status",
+        "explanation"
+      ],
+      "title": "EligibilityFinding",
+      "type": "object"
+    },
+    "EligibilityStatus": {
+      "enum": [
+        "meets_declared_eligibility",
+        "does_not_meet_declared_eligibility",
+        "additional_information_required",
+        "not_evaluated",
+        "human_review_required"
+      ],
+      "title": "EligibilityStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/EligibilityStatus"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/EligibilityFinding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "uses_resume_inference": {
+      "const": false,
+      "default": false,
+      "title": "Uses Resume Inference",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "status",
+    "findings"
+  ],
+  "title": "EligibilityResult",
+  "type": "object",
+  "$id": "urn:screener:EligibilityResult:2.0.0"
+}

@@ -1,0 +1,77 @@
+{
+  "fixture": "xero-lead-product-manager-ai-enablement.linkedin.pdf",
+  "listing_source": "linkedin",
+  "application_platform": "ashby",
+  "has_approved_knowledge_profile": false,
+  "selected_profile_id": "platform_neutral",
+  "application_url_contains": "jobs.ashbyhq.com/xero",
+  "responses_managed_off_platform": true,
+  "employer": "Xero",
+  "role_title": "Lead Product Manager - AI Enablement",
+  "location": "Melbourne, Victoria, Australia",
+  "employment_type": "Full-time",
+  "workplace_type": "Hybrid",
+  "compensation_text_contains": null,
+  "required_sections": [
+    "employer_requirements",
+    "employer_responsibilities",
+    "employer_role_overview"
+  ],
+  "employer_text_must_contain": [
+    "You bring strong platform product management experience",
+    "developer tools, infrastructure, data or AI",
+    "You think in systems, comfortably joining the dots",
+    "Translating complex technical possibilities into clear outcomes and investment decisions",
+    "Your approach to discovery, delivery and measurement is outcome-focused",
+    "Ambiguity, evolving technology and incomplete information",
+    "Building and scaling the shared capabilities behind Xero's AI-native delivery model",
+    "Publishing quarterly roadmaps, operating model and governance approach",
+    "Moving the highest-value workflows from pilot into repeatable adoption",
+    "Aligning stakeholders on strategy and priorities"
+  ],
+  "employer_text_must_not_contain": [
+    "44 people clicked apply",
+    "You\u2019d be a  top applicant",
+    "Your profile and resume seem to match the required qualifications well",
+    "Show match details",
+    "Tailor my resume",
+    "Candidate seniority level",
+    "55% Senior level candidates",
+    "Candidate education level",
+    "Master of Business Administration",
+    "Exclusive Job Seeker Insights",
+    "Powered by Bing",
+    "Median employee tenure",
+    "Set alert for similar jobs",
+    "Hire a resume writer",
+    "Get a resume review",
+    "Company alumni from Dell Technologies",
+    "44 total",
+    "446,942 followers",
+    "Trusted by 5M around the world",
+    "Apply even if your experience isn't a perfect match"
+  ],
+  "retained_but_unscored_categories": [
+    "employer_eeo"
+  ],
+  "expected_requirement_concepts_required": [
+    "platform_product_management",
+    "systems_thinking",
+    "decision_making",
+    "product_practices",
+    "ambiguity_tolerance",
+    "learning_mindset",
+    "adoption",
+    "org_alignment",
+    "governance"
+  ],
+  "expected_requirement_concepts_preferred": [],
+  "expected_eligibility_requirement_present": false,
+  "notes": "Ashby has no approved Phase 1 knowledge profile, so the platform-neutral profile is used; the nearest known ATS is never substituted. 'AI' appears inside the platform-experience requirement as an alternative technology domain and in role/responsibility statements, so ai_enablement is asserted across all requirement importances rather than as a standalone required qualification.",
+  "expected_concepts_anywhere": [
+    "ai_enablement",
+    "platform_product_management",
+    "governance",
+    "adoption"
+  ]
+}

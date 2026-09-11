@@ -1,0 +1,177 @@
+{
+  "$defs": {
+    "ComponentScore": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "component": {
+          "title": "Component",
+          "type": "string"
+        },
+        "weight_percent": {
+          "title": "Weight Percent",
+          "type": "number"
+        },
+        "raw_score": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Raw Score",
+          "type": "number"
+        },
+        "weighted_points": {
+          "title": "Weighted Points",
+          "type": "number"
+        },
+        "contributions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Contribution"
+          },
+          "title": "Contributions",
+          "type": "array"
+        },
+        "excluded_requirement_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Excluded Requirement Ids",
+          "type": "array"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "weight_percent",
+        "raw_score",
+        "weighted_points",
+        "explanation"
+      ],
+      "title": "ComponentScore",
+      "type": "object"
+    },
+    "Contribution": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "match_id": {
+          "title": "Match Id",
+          "type": "string"
+        },
+        "points_available": {
+          "title": "Points Available",
+          "type": "number"
+        },
+        "points_awarded": {
+          "title": "Points Awarded",
+          "type": "number"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "match_id",
+        "points_available",
+        "points_awarded",
+        "explanation"
+      ],
+      "title": "Contribution",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "alignment_index": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Alignment Index",
+      "type": "number"
+    },
+    "band_label": {
+      "title": "Band Label",
+      "type": "string"
+    },
+    "band_caveat": {
+      "title": "Band Caveat",
+      "type": "string"
+    },
+    "components": {
+      "items": {
+        "$ref": "#/$defs/ComponentScore"
+      },
+      "title": "Components",
+      "type": "array"
+    },
+    "overall_confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Overall Confidence",
+      "type": "number"
+    },
+    "rubric_id": {
+      "title": "Rubric Id",
+      "type": "string"
+    },
+    "rubric_version": {
+      "title": "Rubric Version",
+      "type": "string"
+    },
+    "rubric_hash": {
+      "title": "Rubric Hash",
+      "type": "string"
+    },
+    "qualification_scoring_suppressed": {
+      "default": false,
+      "title": "Qualification Scoring Suppressed",
+      "type": "boolean"
+    },
+    "suppression_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Suppression Reason"
+    }
+  },
+  "required": [
+    "alignment_index",
+    "band_label",
+    "band_caveat",
+    "components",
+    "overall_confidence",
+    "rubric_id",
+    "rubric_version",
+    "rubric_hash"
+  ],
+  "title": "ScoreResult",
+  "type": "object",
+  "$id": "urn:screener:ScoreResult:2.0.0"
+}

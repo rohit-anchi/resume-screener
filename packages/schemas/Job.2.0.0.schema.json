@@ -1,0 +1,474 @@
+{
+  "$defs": {
+    "DocumentFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceLocation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "DocumentFinding",
+      "type": "object"
+    },
+    "EligibilityRule": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "question_id": {
+          "title": "Question Id",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "operator": {
+          "enum": [
+            "equals",
+            "not_equals",
+            "in",
+            "gte",
+            "lte",
+            "truthy"
+          ],
+          "title": "Operator",
+          "type": "string"
+        },
+        "expected": {
+          "title": "Expected"
+        },
+        "legal_basis": {
+          "description": "Employer-declared job-related basis; required for auditability",
+          "title": "Legal Basis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_id",
+        "question_id",
+        "description",
+        "operator",
+        "expected",
+        "legal_basis"
+      ],
+      "title": "EligibilityRule",
+      "type": "object"
+    },
+    "Importance": {
+      "enum": [
+        "eligibility",
+        "required",
+        "preferred",
+        "contextual",
+        "unscorable"
+      ],
+      "title": "Importance",
+      "type": "string"
+    },
+    "IngestedDocument": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "resume",
+            "job_description"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "filename": {
+          "title": "Filename",
+          "type": "string"
+        },
+        "media_type": {
+          "title": "Media Type",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        },
+        "byte_size": {
+          "title": "Byte Size",
+          "type": "integer"
+        },
+        "page_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page Count"
+        },
+        "extracted_text": {
+          "title": "Extracted Text",
+          "type": "string"
+        },
+        "redacted_text": {
+          "default": "",
+          "title": "Redacted Text",
+          "type": "string"
+        },
+        "accepted": {
+          "title": "Accepted",
+          "type": "boolean"
+        },
+        "findings": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/DocumentFinding"
+          },
+          "title": "Findings",
+          "type": "array"
+        },
+        "parser_version": {
+          "title": "Parser Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "kind",
+        "filename",
+        "media_type",
+        "sha256",
+        "byte_size",
+        "extracted_text",
+        "accepted",
+        "parser_version"
+      ],
+      "title": "IngestedDocument",
+      "type": "object"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "normalised_concept": {
+          "title": "Normalised Concept",
+          "type": "string"
+        },
+        "alternative_concepts": {
+          "description": "OR-alternatives when the requirement says 'X or Y'",
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternative Concepts",
+          "type": "array"
+        },
+        "category": {
+          "$ref": "#/$defs/RequirementCategory"
+        },
+        "importance": {
+          "$ref": "#/$defs/Importance"
+        },
+        "evidence_type": {
+          "title": "Evidence Type",
+          "type": "string"
+        },
+        "minimum_threshold": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Threshold"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_location": {
+          "$ref": "#/$defs/SourceLocation"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "human_review_required": {
+          "default": false,
+          "title": "Human Review Required",
+          "type": "boolean"
+        },
+        "review_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Reason"
+        },
+        "extraction_method": {
+          "default": "rule",
+          "enum": [
+            "rule",
+            "lexicon",
+            "llm_proposed_validated",
+            "human"
+          ],
+          "title": "Extraction Method",
+          "type": "string"
+        },
+        "weight": {
+          "default": 1.0,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "text",
+        "normalised_concept",
+        "category",
+        "importance",
+        "evidence_type",
+        "source_location",
+        "confidence"
+      ],
+      "title": "Requirement",
+      "type": "object"
+    },
+    "RequirementCategory": {
+      "enum": [
+        "eligibility",
+        "required_experience",
+        "preferred_experience",
+        "skill",
+        "qualification",
+        "certification",
+        "domain_knowledge",
+        "leadership",
+        "delivery",
+        "communication",
+        "stakeholder_management",
+        "technical_knowledge",
+        "location_or_work_arrangement",
+        "work_authorisation",
+        "travel",
+        "other"
+      ],
+      "title": "RequirementCategory",
+      "type": "string"
+    },
+    "SourceLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "char_start": {
+          "title": "Char Start",
+          "type": "integer"
+        },
+        "char_end": {
+          "title": "Char End",
+          "type": "integer"
+        },
+        "text_span": {
+          "title": "Text Span",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "char_start",
+        "char_end",
+        "text_span"
+      ],
+      "title": "SourceLocation",
+      "type": "object"
+    },
+    "Threshold": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "unit": {
+          "enum": [
+            "years",
+            "months",
+            "count"
+          ],
+          "title": "Unit",
+          "type": "string"
+        },
+        "comparator": {
+          "default": ">=",
+          "enum": [
+            ">=",
+            ">",
+            "<=",
+            "==",
+            "<"
+          ],
+          "title": "Comparator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "Threshold",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "job_id": {
+      "title": "Job Id",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "document": {
+      "$ref": "#/$defs/IngestedDocument"
+    },
+    "requirements": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Requirement"
+      },
+      "title": "Requirements",
+      "type": "array"
+    },
+    "eligibility_rules": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EligibilityRule"
+      },
+      "title": "Eligibility Rules",
+      "type": "array"
+    },
+    "requirements_version": {
+      "default": 1,
+      "title": "Requirements Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "job_id",
+    "title",
+    "document"
+  ],
+  "title": "Job",
+  "type": "object",
+  "$id": "urn:screener:Job:2.0.0"
+}

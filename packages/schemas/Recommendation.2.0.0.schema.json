@@ -1,0 +1,150 @@
+{
+  "$defs": {
+    "RecommendationKind": {
+      "enum": [
+        "critical_application_gap",
+        "make_evidence_explicit",
+        "section_ordering",
+        "targeted_summary",
+        "terminology_alignment",
+        "quantify_achievement",
+        "skill_needs_context",
+        "reduce_or_remove",
+        "application_field_care"
+      ],
+      "title": "RecommendationKind",
+      "type": "string"
+    },
+    "RecommendedEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "original_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Original Text"
+        },
+        "proposed_text": {
+          "title": "Proposed Text",
+          "type": "string"
+        },
+        "job_requirement_addressed": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Job Requirement Addressed"
+        },
+        "candidate_evidence_supporting": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Candidate Evidence Supporting",
+          "type": "array"
+        },
+        "verification_required": {
+          "title": "Verification Required",
+          "type": "string"
+        }
+      },
+      "required": [
+        "original_text",
+        "proposed_text",
+        "job_requirement_addressed",
+        "candidate_evidence_supporting",
+        "verification_required"
+      ],
+      "title": "RecommendedEdit",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "recommendation_id": {
+      "title": "Recommendation Id",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/RecommendationKind"
+    },
+    "priority": {
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "title": "Priority",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "rationale": {
+      "title": "Rationale",
+      "type": "string"
+    },
+    "requirement_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Requirement Ids",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "edit": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RecommendedEdit"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "fabrication_guard": {
+      "default": "Only include this if it is true and you can evidence it in an interview.",
+      "title": "Fabrication Guard",
+      "type": "string"
+    }
+  },
+  "required": [
+    "recommendation_id",
+    "kind",
+    "priority",
+    "title",
+    "rationale"
+  ],
+  "title": "Recommendation",
+  "type": "object",
+  "$id": "urn:screener:Recommendation:2.0.0"
+}

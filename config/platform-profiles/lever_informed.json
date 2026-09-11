@@ -1,0 +1,15 @@
+{
+  "schema_version": "2.0.0",
+  "profile_id": "lever_informed",
+  "display_name": "Lever-informed workflow",
+  "platform": "Lever",
+  "disclaimer": "Platform-informed screening simulation based on public Lever documentation. Lever does not expose a universal fit percentage; no Lever score is produced here.",
+  "emphasis": ["resume readability", "candidate profile clarity", "pipeline progression", "searchable terminology", "tags and structured information", "recruiter collaboration"],
+  "report_sections_emphasised": ["parseability", "evidence", "requirement_coverage"],
+  "scenarios": [
+    {"schema_version": "2.0.0", "scenario_id": "lv-fast-review", "title": "Rapid recruiter review (Fast Resume Review)", "description": "A recruiter reviews resume, profile and answers sequentially and advances, archives or skips.", "delivery_label": "DOCUMENTED", "claim_ids": ["LV-C04", "LV-C02"], "emphasis": ["first-screen clarity", "chronology"]},
+    {"schema_version": "2.0.0", "scenario_id": "lv-search", "title": "Candidate search and filtering", "description": "Boolean search across parsed resume text, notes and feedback; results sort by last interaction, not by fit score.", "delivery_label": "DOCUMENTED", "claim_ids": ["LV-C03", "LV-C01"], "emphasis": ["selectable text", "explicit terminology"]},
+    {"schema_version": "2.0.0", "scenario_id": "lv-automation", "title": "Tag or workflow-supported review", "description": "Employer-configured workflows may tag or archive based on answers or data where the package allows.", "delivery_label": "CONFIGURATION-DEPENDENT", "claim_ids": ["LV-C05"], "emphasis": ["accurate answers to posting questions"]},
+    {"schema_version": "2.0.0", "scenario_id": "lv-talent-fit", "title": "Optional Talent Fit / third-party screening", "description": "Package-dependent Talent Fit gives a job-specific binary assessment with explanation; third-party screening is separately provided.", "delivery_label": "OPTIONAL", "claim_ids": ["LV-C06"], "emphasis": ["resume-to-job-description evidence"]}
+  ]
+}

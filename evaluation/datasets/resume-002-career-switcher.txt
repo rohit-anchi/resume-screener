@@ -1,0 +1,20 @@
+Jordan Lee
+jordan.lee@example.org | 555-0199
+
+Summary
+Project manager moving into product, with strong delivery and stakeholder record and no prior experience with cloud platforms.
+
+Experience
+Project Manager | Meridian Health | Feb 2021 - Present
+- Managed programme delivery for a clinical analytics platform serving 14 hospitals.
+- Prioritised a shared backlog with clinical stakeholders using Scrum.
+- Wrote SQL to reconcile adoption metrics and built KPI dashboards.
+
+Coordinator | Meridian Health | Jun 2019 - Jan 2021
+- Coordinated stakeholder workshops and documented process requirements.
+
+Education
+Master of Science, Health Informatics, 2019
+
+Certifications
+Project Management Professional (PMP), 2022

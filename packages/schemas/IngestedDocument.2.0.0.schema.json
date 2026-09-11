@@ -1,0 +1,194 @@
+{
+  "$defs": {
+    "DocumentFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceLocation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "DocumentFinding",
+      "type": "object"
+    },
+    "SourceLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "char_start": {
+          "title": "Char Start",
+          "type": "integer"
+        },
+        "char_end": {
+          "title": "Char End",
+          "type": "integer"
+        },
+        "text_span": {
+          "title": "Text Span",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "char_start",
+        "char_end",
+        "text_span"
+      ],
+      "title": "SourceLocation",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "document_id": {
+      "title": "Document Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "resume",
+        "job_description"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "filename": {
+      "title": "Filename",
+      "type": "string"
+    },
+    "media_type": {
+      "title": "Media Type",
+      "type": "string"
+    },
+    "sha256": {
+      "title": "Sha256",
+      "type": "string"
+    },
+    "byte_size": {
+      "title": "Byte Size",
+      "type": "integer"
+    },
+    "page_count": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Page Count"
+    },
+    "extracted_text": {
+      "title": "Extracted Text",
+      "type": "string"
+    },
+    "redacted_text": {
+      "default": "",
+      "title": "Redacted Text",
+      "type": "string"
+    },
+    "accepted": {
+      "title": "Accepted",
+      "type": "boolean"
+    },
+    "findings": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DocumentFinding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "parser_version": {
+      "title": "Parser Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "document_id",
+    "kind",
+    "filename",
+    "media_type",
+    "sha256",
+    "byte_size",
+    "extracted_text",
+    "accepted",
+    "parser_version"
+  ],
+  "title": "IngestedDocument",
+  "type": "object",
+  "$id": "urn:screener:IngestedDocument:2.0.0"
+}

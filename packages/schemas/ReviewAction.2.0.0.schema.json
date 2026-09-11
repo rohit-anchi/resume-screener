@@ -1,0 +1,93 @@
+{
+  "$defs": {
+    "HumanAction": {
+      "enum": [
+        "move_forward",
+        "hold_for_review",
+        "request_additional_information",
+        "decline_with_human_reason"
+      ],
+      "title": "HumanAction",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "screening_id": {
+      "title": "Screening Id",
+      "type": "string"
+    },
+    "actor": {
+      "title": "Actor",
+      "type": "string"
+    },
+    "actor_role": {
+      "title": "Actor Role",
+      "type": "string"
+    },
+    "action": {
+      "enum": [
+        "accept_finding",
+        "reject_finding",
+        "edit_requirement",
+        "link_evidence",
+        "change_match_status",
+        "mark_not_assessable",
+        "add_note",
+        "request_candidate_information",
+        "override_score",
+        "escalate_compliance",
+        "record_decision"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "target_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Id"
+    },
+    "new_value": {
+      "default": null,
+      "title": "New Value"
+    },
+    "reason": {
+      "minLength": 3,
+      "title": "Reason",
+      "type": "string"
+    },
+    "human_decision": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/HumanAction"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "screening_id",
+    "actor",
+    "actor_role",
+    "action",
+    "reason"
+  ],
+  "title": "ReviewAction",
+  "type": "object",
+  "$id": "urn:screener:ReviewAction:2.0.0"
+}

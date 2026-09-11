@@ -1,0 +1,26 @@
+Priya Raman
+priya.raman@example.com | +1 555 010 2233 | 12 Harbour Street, Austin, TX 78701 | linkedin.com/in/priyaraman
+
+Summary
+Product management consultant focused on enterprise telemetry, metering and subscription monetisation.
+
+Professional Experience
+Product Management Consultant | Apex Systems Group | Jul 2022 - Present
+- Owned a cross-product capability roadmap covering edge collectors, mediation and rating for a usage-based subscription platform.
+- Partnered with engineering, architecture and finance stakeholders to prioritise a 40-feature backlog across 5 delivery pods.
+- Authored feature briefs and product requirements adopted by 5 delivery teams.
+- Defined telemetry data pipeline requirements on AWS with Kafka-based ingestion, reducing rating latency by 35%.
+
+Product Manager | Northwind Analytics | Mar 2019 - Jun 2022
+- Launched a SaaS analytics dashboard used by 120 enterprise customers.
+- Led customer discovery interviews with 30 accounts and translated findings into quarterly roadmap trade-offs.
+- Wrote SQL queries to size adoption metrics and shape KPIs.
+
+Business Analyst | Contoso Logistics | Jan 2017 - Feb 2019
+- Managed stakeholder workshops and documented process requirements for a logistics ERP migration.
+
+Education
+Bachelor of Engineering, Computer Science, State University, graduated 2016
+
+Certifications
+Certified Scrum Product Owner (CSPO), 2020

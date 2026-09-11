@@ -1,0 +1,17 @@
+{
+  "schema_version": "2.0.0",
+  "rubric_id": "default",
+  "rubric_version": "2.1.0",
+  "weights": {
+    "required_qualification_coverage": 35,
+    "relevant_experience_alignment": 18,
+    "demonstrated_skill_evidence": 14,
+    "leadership_and_operating_scope": 12,
+    "achievement_and_impact_evidence": 9,
+    "preferred_qualification_coverage": 5,
+    "application_completeness": 4,
+    "resume_parseability": 3
+  },
+  "confidence_review_threshold": 0.6,
+  "near_threshold_tolerance_months": 6
+}

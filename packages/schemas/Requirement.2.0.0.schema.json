@@ -1,0 +1,240 @@
+{
+  "$defs": {
+    "Importance": {
+      "enum": [
+        "eligibility",
+        "required",
+        "preferred",
+        "contextual",
+        "unscorable"
+      ],
+      "title": "Importance",
+      "type": "string"
+    },
+    "RequirementCategory": {
+      "enum": [
+        "eligibility",
+        "required_experience",
+        "preferred_experience",
+        "skill",
+        "qualification",
+        "certification",
+        "domain_knowledge",
+        "leadership",
+        "delivery",
+        "communication",
+        "stakeholder_management",
+        "technical_knowledge",
+        "location_or_work_arrangement",
+        "work_authorisation",
+        "travel",
+        "other"
+      ],
+      "title": "RequirementCategory",
+      "type": "string"
+    },
+    "SourceLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "char_start": {
+          "title": "Char Start",
+          "type": "integer"
+        },
+        "char_end": {
+          "title": "Char End",
+          "type": "integer"
+        },
+        "text_span": {
+          "title": "Text Span",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "char_start",
+        "char_end",
+        "text_span"
+      ],
+      "title": "SourceLocation",
+      "type": "object"
+    },
+    "Threshold": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "unit": {
+          "enum": [
+            "years",
+            "months",
+            "count"
+          ],
+          "title": "Unit",
+          "type": "string"
+        },
+        "comparator": {
+          "default": ">=",
+          "enum": [
+            ">=",
+            ">",
+            "<=",
+            "==",
+            "<"
+          ],
+          "title": "Comparator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "Threshold",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "requirement_id": {
+      "title": "Requirement Id",
+      "type": "string"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "normalised_concept": {
+      "title": "Normalised Concept",
+      "type": "string"
+    },
+    "alternative_concepts": {
+      "description": "OR-alternatives when the requirement says 'X or Y'",
+      "items": {
+        "type": "string"
+      },
+      "title": "Alternative Concepts",
+      "type": "array"
+    },
+    "category": {
+      "$ref": "#/$defs/RequirementCategory"
+    },
+    "importance": {
+      "$ref": "#/$defs/Importance"
+    },
+    "evidence_type": {
+      "title": "Evidence Type",
+      "type": "string"
+    },
+    "minimum_threshold": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Threshold"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "source_location": {
+      "$ref": "#/$defs/SourceLocation"
+    },
+    "confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "human_review_required": {
+      "default": false,
+      "title": "Human Review Required",
+      "type": "boolean"
+    },
+    "review_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Review Reason"
+    },
+    "extraction_method": {
+      "default": "rule",
+      "enum": [
+        "rule",
+        "lexicon",
+        "llm_proposed_validated",
+        "human"
+      ],
+      "title": "Extraction Method",
+      "type": "string"
+    },
+    "weight": {
+      "default": 1.0,
+      "title": "Weight",
+      "type": "number"
+    }
+  },
+  "required": [
+    "requirement_id",
+    "text",
+    "normalised_concept",
+    "category",
+    "importance",
+    "evidence_type",
+    "source_location",
+    "confidence"
+  ],
+  "title": "Requirement",
+  "type": "object",
+  "$id": "urn:screener:Requirement:2.0.0"
+}

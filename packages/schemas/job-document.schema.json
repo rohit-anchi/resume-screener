@@ -1,0 +1,499 @@
+{
+  "$defs": {
+    "AtsDetection": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "listing_source": {
+          "default": "linkedin",
+          "title": "Listing Source",
+          "type": "string"
+        },
+        "application_platform": {
+          "$ref": "#/$defs/AtsPlatform"
+        },
+        "application_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Application Url"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "signals": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AtsSignal"
+          },
+          "title": "Signals",
+          "type": "array"
+        },
+        "has_approved_knowledge_profile": {
+          "title": "Has Approved Knowledge Profile",
+          "type": "boolean"
+        },
+        "selected_profile_id": {
+          "title": "Selected Profile Id",
+          "type": "string"
+        },
+        "profile_selection_reason": {
+          "title": "Profile Selection Reason",
+          "type": "string"
+        },
+        "responses_managed_off_platform": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Responses Managed Off Platform"
+        }
+      },
+      "required": [
+        "application_platform",
+        "confidence",
+        "has_approved_knowledge_profile",
+        "selected_profile_id",
+        "profile_selection_reason"
+      ],
+      "title": "AtsDetection",
+      "type": "object"
+    },
+    "AtsPlatform": {
+      "enum": [
+        "greenhouse",
+        "lever",
+        "workday",
+        "sap_successfactors",
+        "ashby",
+        "other",
+        "unknown"
+      ],
+      "title": "AtsPlatform",
+      "type": "string"
+    },
+    "AtsSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "signal_type": {
+          "enum": [
+            "application_link",
+            "document_text",
+            "listing_metadata"
+          ],
+          "title": "Signal Type",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "platform": {
+          "$ref": "#/$defs/AtsPlatform"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "weight": {
+          "default": 1.0,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "signal_type",
+        "value",
+        "platform"
+      ],
+      "title": "AtsSignal",
+      "type": "object"
+    },
+    "BlockCategory": {
+      "description": "Classification of every extracted content block.\n\n`allowed()` members are employer job content; only `requirement_bearing()` members\nmay enter requirement extraction and scoring.",
+      "enum": [
+        "job_header",
+        "employer_about",
+        "employer_role_overview",
+        "employer_team",
+        "employer_responsibilities",
+        "employer_requirements",
+        "employer_preferred",
+        "employer_work_arrangement",
+        "employer_eligibility",
+        "employer_compensation",
+        "employer_process",
+        "employer_application_instructions",
+        "employer_eeo",
+        "employer_ai_disclosure",
+        "linkedin_nav",
+        "linkedin_job_match",
+        "linkedin_applicant_stats",
+        "linkedin_candidate_seniority_stats",
+        "linkedin_candidate_education_stats",
+        "linkedin_premium_insights",
+        "linkedin_company_insights",
+        "linkedin_similar_jobs",
+        "linkedin_advertisement",
+        "linkedin_resume_promotion",
+        "linkedin_people_suggestions",
+        "page_header_footer",
+        "garbled_fragment",
+        "unknown"
+      ],
+      "title": "BlockCategory",
+      "type": "string"
+    },
+    "ContentBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "block_id": {
+          "title": "Block Id",
+          "type": "string"
+        },
+        "page": {
+          "title": "Page",
+          "type": "integer"
+        },
+        "order": {
+          "title": "Order",
+          "type": "integer"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "max_font_size": {
+          "title": "Max Font Size",
+          "type": "number"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/$defs/BlockCategory"
+        },
+        "allowed_for_requirements": {
+          "title": "Allowed For Requirements",
+          "type": "boolean"
+        },
+        "classification_reason": {
+          "title": "Classification Reason",
+          "type": "string"
+        },
+        "classifier_rule": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Classifier Rule"
+        },
+        "review_required": {
+          "default": false,
+          "title": "Review Required",
+          "type": "boolean"
+        },
+        "char_start": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Offset in employer_text when included",
+          "title": "Char Start"
+        },
+        "char_end": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Char End"
+        }
+      },
+      "required": [
+        "block_id",
+        "page",
+        "order",
+        "y",
+        "x",
+        "max_font_size",
+        "text",
+        "category",
+        "allowed_for_requirements",
+        "classification_reason"
+      ],
+      "title": "ContentBlock",
+      "type": "object"
+    },
+    "JobSection": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/$defs/BlockCategory"
+        },
+        "char_start": {
+          "title": "Char Start",
+          "type": "integer"
+        },
+        "char_end": {
+          "title": "Char End",
+          "type": "integer"
+        },
+        "block_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Block Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "category",
+        "char_start",
+        "char_end",
+        "block_ids"
+      ],
+      "title": "JobSection",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "job_document_id": {
+      "title": "Job Document Id",
+      "type": "string"
+    },
+    "source_document_id": {
+      "title": "Source Document Id",
+      "type": "string"
+    },
+    "filename": {
+      "title": "Filename",
+      "type": "string"
+    },
+    "sha256": {
+      "title": "Sha256",
+      "type": "string"
+    },
+    "page_count": {
+      "title": "Page Count",
+      "type": "integer"
+    },
+    "listing_source": {
+      "title": "Listing Source",
+      "type": "string"
+    },
+    "employer": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Employer"
+    },
+    "role_title": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Role Title"
+    },
+    "location": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Location"
+    },
+    "employment_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Employment Type"
+    },
+    "workplace_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Workplace Type"
+    },
+    "compensation_text": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Compensation Text"
+    },
+    "employer_text": {
+      "title": "Employer Text",
+      "type": "string"
+    },
+    "blocks": {
+      "items": {
+        "$ref": "#/$defs/ContentBlock"
+      },
+      "title": "Blocks",
+      "type": "array"
+    },
+    "sections": {
+      "items": {
+        "$ref": "#/$defs/JobSection"
+      },
+      "title": "Sections",
+      "type": "array"
+    },
+    "excluded_block_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Excluded Block Ids",
+      "type": "array"
+    },
+    "excluded_categories": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "default": {},
+      "title": "Excluded Categories",
+      "type": "object"
+    },
+    "ats": {
+      "$ref": "#/$defs/AtsDetection"
+    },
+    "extraction_warnings": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Extraction Warnings",
+      "type": "array"
+    },
+    "parser_version": {
+      "title": "Parser Version",
+      "type": "string"
+    },
+    "classifier_version": {
+      "title": "Classifier Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "job_document_id",
+    "source_document_id",
+    "filename",
+    "sha256",
+    "page_count",
+    "listing_source",
+    "employer",
+    "role_title",
+    "location",
+    "employment_type",
+    "workplace_type",
+    "employer_text",
+    "blocks",
+    "sections",
+    "excluded_block_ids",
+    "ats",
+    "parser_version",
+    "classifier_version"
+  ],
+  "title": "JobDocument",
+  "type": "object",
+  "$id": "urn:screener:JobDocument:2.0.0"
+}

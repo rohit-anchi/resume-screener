@@ -1,0 +1,83 @@
+{
+  "fixture": "amber-electric-director-of-product.linkedin.pdf",
+  "listing_source": "linkedin",
+  "application_platform": "lever",
+  "has_approved_knowledge_profile": true,
+  "selected_profile_id": "lever_informed",
+  "application_url_contains": "jobs.lever.co/amberelectric",
+  "responses_managed_off_platform": true,
+  "employer": "Amber Electric",
+  "role_title": "Director of Product",
+  "location": "Melbourne, Victoria, Australia",
+  "employment_type": "Full-time",
+  "workplace_type": "Hybrid",
+  "compensation_text_contains": "$220,000 - $260,000",
+  "required_sections": [
+    "employer_requirements",
+    "employer_responsibilities",
+    "employer_eligibility"
+  ],
+  "employer_text_must_contain": [
+    "2+ years experience as a senior product leader managing PMs",
+    "manager-of-managers in a product function",
+    "5+ years of relevant commercial product experience",
+    "Proven ability to set product strategy and communicate it clearly across an organisation",
+    "A track record of raising the quality of product management around you",
+    "multiple markets, brands, or customer segments",
+    "Own the direction, goals, and quality of Amber's core product",
+    "Define and maintain Amber's product vision and strategy",
+    "Mature our product practices; roadmapping, discovery, goal-setting",
+    "Applications will be accepted only from candidates already based in Australia"
+  ],
+  "employer_text_must_not_contain": [
+    "Over 100 people clicked apply",
+    "Job match is high",
+    "Your profile and resume match the required qualifications well",
+    "Show match details",
+    "Tailor my resume",
+    "Candidate seniority level",
+    "38% Senior level candidates",
+    "Candidate education level",
+    "Master of Business Administration",
+    "Exclusive Job Seeker Insights",
+    "Powered by Bing",
+    "Median employee tenure",
+    "Set alert for similar jobs",
+    "Hire a resume writer",
+    "Get a resume review",
+    "People you can reach out to",
+    "Mayan Agarwal",
+    "Company alum from Dell Technologies",
+    "331 total",
+    "$220,000 - $260,000 a year",
+    "We never discriminate on the basis of race",
+    "A screening interview with our talent team",
+    "artificial intelligence (AI) tools to support parts of the hiring process"
+  ],
+  "retained_but_unscored_categories": [
+    "employer_about",
+    "employer_compensation",
+    "employer_eeo",
+    "employer_process",
+    "employer_ai_disclosure",
+    "employer_application_instructions"
+  ],
+  "expected_requirement_concepts_required": [
+    "people_management_of_managers",
+    "product_management",
+    "product_strategy",
+    "product_practices",
+    "exec_reporting",
+    "written_communication"
+  ],
+  "expected_requirement_concepts_preferred": [
+    "multi_market_platform"
+  ],
+  "expected_eligibility_requirement_present": true,
+  "notes": "Employer discloses AI use in hiring; retained as employer_ai_disclosure and surfaced in scenarios, never scored. The '2+ years managing PMs ... or manager-of-managers' item carries alternative concepts because the employer offers two acceptable routes; the 2-year and 5-year thresholds are kept distinct.",
+  "expected_concepts_anywhere": [
+    "multi_market_platform",
+    "platform_product_management",
+    "people_management_of_managers"
+  ]
+}

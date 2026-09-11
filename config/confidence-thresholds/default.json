@@ -1,0 +1,12 @@
+{
+  "human_review_below_confidence": 0.6,
+  "adverse_recommendation_requires_human": true,
+  "bands": [
+    {"min": 85, "label": "Strong documented alignment"},
+    {"min": 70, "label": "Good documented alignment"},
+    {"min": 55, "label": "Partial documented alignment"},
+    {"min": 40, "label": "Limited documented alignment"},
+    {"min": 0, "label": "Insufficient evidence for this role"}
+  ],
+  "band_caveat": "This result measures evidence available in the submitted application. It does not determine the candidate's actual capability or predict an employer's hiring decision."
+}

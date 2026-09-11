@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "case_id": "C1", "job": "jd-001-senior-pm-telemetry.txt", "resume": "resume-001-baseline.txt",
+      "answers": [{"question_id": "Q1", "answer": "yes"}], "expected_eligibility": "meets_declared_eligibility",
+      "expected_required_concepts": ["product_management", "cloud_platforms", "stakeholder_management", "data_pipelines", "bachelor_degree", "roadmap_ownership", "written_communication"],
+      "expected_unscorable_present": true,
+      "expected_statuses": {"product_management": ["confirmed"], "cloud_platforms": ["strong", "confirmed"], "bachelor_degree": ["confirmed"], "scrum_certification": ["confirmed"], "sql": ["partial", "strong"]},
+      "expected_direct_matches_correct": ["product_management", "cloud_platforms", "data_pipelines", "stakeholder_management", "saas_subscription", "sql", "scrum_certification", "bachelor_degree", "roadmap_ownership", "written_communication"]
+    },
+    {
+      "case_id": "C2", "job": "jd-001-senior-pm-telemetry.txt", "resume": "resume-001-baseline.txt",
+      "answers": [{"question_id": "Q1", "answer": "no"}], "expected_eligibility": "does_not_meet_declared_eligibility",
+      "expected_required_concepts": ["product_management", "cloud_platforms", "stakeholder_management", "data_pipelines", "bachelor_degree", "roadmap_ownership", "written_communication"],
+      "expected_unscorable_present": true, "expected_statuses": {},
+      "expected_direct_matches_correct": ["product_management", "cloud_platforms", "data_pipelines", "stakeholder_management", "saas_subscription", "sql", "scrum_certification", "bachelor_degree", "roadmap_ownership", "written_communication"]
+    },
+    {
+      "case_id": "C3", "job": "jd-001-senior-pm-telemetry.txt", "resume": "resume-001-baseline.txt",
+      "answers": [], "expected_eligibility": "additional_information_required",
+      "expected_required_concepts": ["product_management", "cloud_platforms", "stakeholder_management", "data_pipelines", "bachelor_degree", "roadmap_ownership", "written_communication"],
+      "expected_unscorable_present": true, "expected_statuses": {},
+      "expected_direct_matches_correct": ["product_management", "cloud_platforms", "data_pipelines", "stakeholder_management", "saas_subscription", "sql", "scrum_certification", "bachelor_degree", "roadmap_ownership", "written_communication"]
+    },
+    {
+      "case_id": "C4", "job": "jd-002-data-platform-pm.txt", "resume": "resume-002-career-switcher.txt",
+      "answers": [{"question_id": "Q1", "answer": "yes"}], "expected_eligibility": "meets_declared_eligibility",
+      "expected_required_concepts": ["product_management", "sql", "analytics", "cloud_platforms", "written_communication", "data_pipelines", "customer_discovery"],
+      "expected_unscorable_present": false,
+      "expected_statuses": {"cloud_platforms": ["weak"], "analytics": ["partial", "strong", "confirmed"], "pmp_certification": ["confirmed"], "master_degree": ["confirmed"], "product_management": ["partial", "strong", "confirmed"]},
+      "expected_direct_matches_correct": ["analytics", "sql", "pmp_certification", "master_degree", "product_management", "agile_delivery"]
+    },
+    {
+      "case_id": "C5", "job": "jd-002-data-platform-pm.txt", "resume": "resume-003-sparse.txt",
+      "answers": [{"question_id": "Q1", "answer": "yes"}], "expected_eligibility": "meets_declared_eligibility",
+      "expected_required_concepts": ["product_management", "sql", "analytics", "cloud_platforms", "written_communication", "data_pipelines", "customer_discovery"],
+      "expected_unscorable_present": false,
+      "expected_statuses": {"product_management": ["no_evidence_located"], "analytics": ["no_evidence_located"], "cloud_platforms": ["no_evidence_located"]},
+      "expected_direct_matches_correct": []
+    }
+  ],
+  "rule": {"rule_id": "R1", "question_id": "Q1", "description": "Authorised to work in country of employment", "operator": "truthy", "expected": true, "legal_basis": "Declared lawful work-authorisation requirement"}
+}

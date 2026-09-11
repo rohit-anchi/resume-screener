@@ -1,0 +1,63 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "event_id": {
+      "title": "Event Id",
+      "type": "string"
+    },
+    "event_type": {
+      "title": "Event Type",
+      "type": "string"
+    },
+    "timestamp": {
+      "title": "Timestamp",
+      "type": "string"
+    },
+    "screening_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Screening Id"
+    },
+    "actor": {
+      "title": "Actor",
+      "type": "string"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "title": "Payload",
+      "type": "object"
+    },
+    "previous_hash": {
+      "title": "Previous Hash",
+      "type": "string"
+    },
+    "event_hash": {
+      "default": "",
+      "title": "Event Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "event_type",
+    "timestamp",
+    "screening_id",
+    "actor",
+    "payload",
+    "previous_hash"
+  ],
+  "title": "AuditEvent",
+  "type": "object",
+  "$id": "urn:screener:AuditEvent:2.0.0"
+}

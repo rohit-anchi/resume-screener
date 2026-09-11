@@ -1,0 +1,29 @@
+Senior Product Manager, Telemetry Platform
+
+About us
+We are a growing enterprise software team building usage telemetry and metering services for subscription products.
+
+Responsibilities
+- Own the cross-product capability roadmap for telemetry collection, mediation and rating.
+- Partner with engineering, architecture and go-to-market stakeholders.
+- Write product requirements and feature briefs for delivery teams.
+
+Minimum qualifications
+- At least five years of product management experience.
+- Experience working with cloud platforms such as AWS or Azure.
+- Strong stakeholder management skills.
+- Experience with data pipelines or telemetry systems.
+- Bachelor's degree or equivalent practical experience.
+
+Preferred qualifications
+- Experience with SaaS or subscription business models.
+- Familiarity with SQL.
+- Certified Scrum Product Owner (CSPO) is a plus.
+- Culture fit with a young and energetic team.
+
+Eligibility
+- Must be authorised to work in the country of employment without sponsorship.
+- Willing to travel up to 10%.
+
+Benefits
+Competitive salary and equity.

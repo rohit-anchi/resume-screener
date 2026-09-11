@@ -1,0 +1,954 @@
+{
+  "$defs": {
+    "AtsDetection": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "listing_source": {
+          "default": "linkedin",
+          "title": "Listing Source",
+          "type": "string"
+        },
+        "application_platform": {
+          "$ref": "#/$defs/AtsPlatform"
+        },
+        "application_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Application Url"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "signals": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AtsSignal"
+          },
+          "title": "Signals",
+          "type": "array"
+        },
+        "has_approved_knowledge_profile": {
+          "title": "Has Approved Knowledge Profile",
+          "type": "boolean"
+        },
+        "selected_profile_id": {
+          "title": "Selected Profile Id",
+          "type": "string"
+        },
+        "profile_selection_reason": {
+          "title": "Profile Selection Reason",
+          "type": "string"
+        },
+        "responses_managed_off_platform": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Responses Managed Off Platform"
+        }
+      },
+      "required": [
+        "application_platform",
+        "confidence",
+        "has_approved_knowledge_profile",
+        "selected_profile_id",
+        "profile_selection_reason"
+      ],
+      "title": "AtsDetection",
+      "type": "object"
+    },
+    "AtsPlatform": {
+      "enum": [
+        "greenhouse",
+        "lever",
+        "workday",
+        "sap_successfactors",
+        "ashby",
+        "other",
+        "unknown"
+      ],
+      "title": "AtsPlatform",
+      "type": "string"
+    },
+    "AtsSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "signal_type": {
+          "enum": [
+            "application_link",
+            "document_text",
+            "listing_metadata"
+          ],
+          "title": "Signal Type",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "platform": {
+          "$ref": "#/$defs/AtsPlatform"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "weight": {
+          "default": 1.0,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "signal_type",
+        "value",
+        "platform"
+      ],
+      "title": "AtsSignal",
+      "type": "object"
+    },
+    "BlockCategory": {
+      "description": "Classification of every extracted content block.\n\n`allowed()` members are employer job content; only `requirement_bearing()` members\nmay enter requirement extraction and scoring.",
+      "enum": [
+        "job_header",
+        "employer_about",
+        "employer_role_overview",
+        "employer_team",
+        "employer_responsibilities",
+        "employer_requirements",
+        "employer_preferred",
+        "employer_work_arrangement",
+        "employer_eligibility",
+        "employer_compensation",
+        "employer_process",
+        "employer_application_instructions",
+        "employer_eeo",
+        "employer_ai_disclosure",
+        "linkedin_nav",
+        "linkedin_job_match",
+        "linkedin_applicant_stats",
+        "linkedin_candidate_seniority_stats",
+        "linkedin_candidate_education_stats",
+        "linkedin_premium_insights",
+        "linkedin_company_insights",
+        "linkedin_similar_jobs",
+        "linkedin_advertisement",
+        "linkedin_resume_promotion",
+        "linkedin_people_suggestions",
+        "page_header_footer",
+        "garbled_fragment",
+        "unknown"
+      ],
+      "title": "BlockCategory",
+      "type": "string"
+    },
+    "ContentBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "block_id": {
+          "title": "Block Id",
+          "type": "string"
+        },
+        "page": {
+          "title": "Page",
+          "type": "integer"
+        },
+        "order": {
+          "title": "Order",
+          "type": "integer"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "max_font_size": {
+          "title": "Max Font Size",
+          "type": "number"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/$defs/BlockCategory"
+        },
+        "allowed_for_requirements": {
+          "title": "Allowed For Requirements",
+          "type": "boolean"
+        },
+        "classification_reason": {
+          "title": "Classification Reason",
+          "type": "string"
+        },
+        "classifier_rule": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Classifier Rule"
+        },
+        "review_required": {
+          "default": false,
+          "title": "Review Required",
+          "type": "boolean"
+        },
+        "char_start": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Offset in employer_text when included",
+          "title": "Char Start"
+        },
+        "char_end": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Char End"
+        }
+      },
+      "required": [
+        "block_id",
+        "page",
+        "order",
+        "y",
+        "x",
+        "max_font_size",
+        "text",
+        "category",
+        "allowed_for_requirements",
+        "classification_reason"
+      ],
+      "title": "ContentBlock",
+      "type": "object"
+    },
+    "CriticalGap": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "requirement_text": {
+          "title": "Requirement Text",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "why_critical": {
+          "title": "Why Critical",
+          "type": "string"
+        },
+        "what_would_resolve_it": {
+          "title": "What Would Resolve It",
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "requirement_text",
+        "status",
+        "why_critical",
+        "what_would_resolve_it"
+      ],
+      "title": "CriticalGap",
+      "type": "object"
+    },
+    "InterviewQuestion": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "question_id": {
+          "title": "Question Id",
+          "type": "string"
+        },
+        "audience": {
+          "$ref": "#/$defs/QuestionAudience"
+        },
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "why_likely": {
+          "title": "Why Likely",
+          "type": "string"
+        },
+        "requirement_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Requirement Id"
+        },
+        "requirement_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Requirement Text"
+        },
+        "trigger": {
+          "title": "Trigger",
+          "type": "string"
+        },
+        "trigger_kind": {
+          "enum": [
+            "evidence",
+            "gap",
+            "ambiguity",
+            "scope",
+            "domain",
+            "eligibility"
+          ],
+          "title": "Trigger Kind",
+          "type": "string"
+        },
+        "suggested_answer_structure": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Suggested Answer Structure",
+          "type": "array"
+        },
+        "follow_ups": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Follow Ups",
+          "type": "array"
+        },
+        "note": {
+          "default": "Prepare your own answer from real experience. No answer content is generated for you.",
+          "title": "Note",
+          "type": "string"
+        }
+      },
+      "required": [
+        "question_id",
+        "audience",
+        "question",
+        "why_likely",
+        "requirement_id",
+        "requirement_text",
+        "trigger",
+        "trigger_kind",
+        "suggested_answer_structure"
+      ],
+      "title": "InterviewQuestion",
+      "type": "object"
+    },
+    "JobDocument": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "job_document_id": {
+          "title": "Job Document Id",
+          "type": "string"
+        },
+        "source_document_id": {
+          "title": "Source Document Id",
+          "type": "string"
+        },
+        "filename": {
+          "title": "Filename",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        },
+        "page_count": {
+          "title": "Page Count",
+          "type": "integer"
+        },
+        "listing_source": {
+          "title": "Listing Source",
+          "type": "string"
+        },
+        "employer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Employer"
+        },
+        "role_title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role Title"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Location"
+        },
+        "employment_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Employment Type"
+        },
+        "workplace_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Workplace Type"
+        },
+        "compensation_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Compensation Text"
+        },
+        "employer_text": {
+          "title": "Employer Text",
+          "type": "string"
+        },
+        "blocks": {
+          "items": {
+            "$ref": "#/$defs/ContentBlock"
+          },
+          "title": "Blocks",
+          "type": "array"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/$defs/JobSection"
+          },
+          "title": "Sections",
+          "type": "array"
+        },
+        "excluded_block_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Excluded Block Ids",
+          "type": "array"
+        },
+        "excluded_categories": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "default": {},
+          "title": "Excluded Categories",
+          "type": "object"
+        },
+        "ats": {
+          "$ref": "#/$defs/AtsDetection"
+        },
+        "extraction_warnings": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Extraction Warnings",
+          "type": "array"
+        },
+        "parser_version": {
+          "title": "Parser Version",
+          "type": "string"
+        },
+        "classifier_version": {
+          "title": "Classifier Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "job_document_id",
+        "source_document_id",
+        "filename",
+        "sha256",
+        "page_count",
+        "listing_source",
+        "employer",
+        "role_title",
+        "location",
+        "employment_type",
+        "workplace_type",
+        "employer_text",
+        "blocks",
+        "sections",
+        "excluded_block_ids",
+        "ats",
+        "parser_version",
+        "classifier_version"
+      ],
+      "title": "JobDocument",
+      "type": "object"
+    },
+    "JobSection": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/$defs/BlockCategory"
+        },
+        "char_start": {
+          "title": "Char Start",
+          "type": "integer"
+        },
+        "char_end": {
+          "title": "Char End",
+          "type": "integer"
+        },
+        "block_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Block Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "category",
+        "char_start",
+        "char_end",
+        "block_ids"
+      ],
+      "title": "JobSection",
+      "type": "object"
+    },
+    "QuestionAudience": {
+      "enum": [
+        "recruiter_screen",
+        "hiring_manager",
+        "evidence_verification",
+        "seniority_and_scope",
+        "gap_focused",
+        "employer_and_domain"
+      ],
+      "title": "QuestionAudience",
+      "type": "string"
+    },
+    "Recommendation": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "recommendation_id": {
+          "title": "Recommendation Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/RecommendationKind"
+        },
+        "priority": {
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Priority",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "requirement_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Requirement Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "edit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RecommendedEdit"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "fabrication_guard": {
+          "default": "Only include this if it is true and you can evidence it in an interview.",
+          "title": "Fabrication Guard",
+          "type": "string"
+        }
+      },
+      "required": [
+        "recommendation_id",
+        "kind",
+        "priority",
+        "title",
+        "rationale"
+      ],
+      "title": "Recommendation",
+      "type": "object"
+    },
+    "RecommendationKind": {
+      "enum": [
+        "critical_application_gap",
+        "make_evidence_explicit",
+        "section_ordering",
+        "targeted_summary",
+        "terminology_alignment",
+        "quantify_achievement",
+        "skill_needs_context",
+        "reduce_or_remove",
+        "application_field_care"
+      ],
+      "title": "RecommendationKind",
+      "type": "string"
+    },
+    "RecommendedEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "original_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Original Text"
+        },
+        "proposed_text": {
+          "title": "Proposed Text",
+          "type": "string"
+        },
+        "job_requirement_addressed": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Job Requirement Addressed"
+        },
+        "candidate_evidence_supporting": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Candidate Evidence Supporting",
+          "type": "array"
+        },
+        "verification_required": {
+          "title": "Verification Required",
+          "type": "string"
+        }
+      },
+      "required": [
+        "original_text",
+        "proposed_text",
+        "job_requirement_addressed",
+        "candidate_evidence_supporting",
+        "verification_required"
+      ],
+      "title": "RecommendedEdit",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "assessment_id": {
+      "title": "Assessment Id",
+      "type": "string"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "mode": {
+      "title": "Mode",
+      "type": "string"
+    },
+    "job": {
+      "$ref": "#/$defs/JobDocument"
+    },
+    "candidate_id": {
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "resume_document_id": {
+      "title": "Resume Document Id",
+      "type": "string"
+    },
+    "screening_id": {
+      "title": "Screening Id",
+      "type": "string"
+    },
+    "ats": {
+      "$ref": "#/$defs/AtsDetection"
+    },
+    "profile_id": {
+      "title": "Profile Id",
+      "type": "string"
+    },
+    "profile_display_name": {
+      "title": "Profile Display Name",
+      "type": "string"
+    },
+    "eligibility_status": {
+      "title": "Eligibility Status",
+      "type": "string"
+    },
+    "alignment_index": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Alignment Index"
+    },
+    "band_label": {
+      "title": "Band Label",
+      "type": "string"
+    },
+    "component_scores": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Component Scores",
+      "type": "object"
+    },
+    "evidence_confidence": {
+      "title": "Evidence Confidence",
+      "type": "number"
+    },
+    "critical_gaps": {
+      "items": {
+        "$ref": "#/$defs/CriticalGap"
+      },
+      "title": "Critical Gaps",
+      "type": "array"
+    },
+    "missing_or_ambiguous": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Or Ambiguous",
+      "type": "array"
+    },
+    "recommendations": {
+      "items": {
+        "$ref": "#/$defs/Recommendation"
+      },
+      "title": "Recommendations",
+      "type": "array"
+    },
+    "questions": {
+      "items": {
+        "$ref": "#/$defs/InterviewQuestion"
+      },
+      "title": "Questions",
+      "type": "array"
+    },
+    "scenario_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Scenario Ids",
+      "type": "array"
+    },
+    "versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Versions",
+      "type": "object"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "audit_event_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Audit Event Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "assessment_id",
+    "created_at",
+    "mode",
+    "job",
+    "candidate_id",
+    "resume_document_id",
+    "screening_id",
+    "ats",
+    "profile_id",
+    "profile_display_name",
+    "eligibility_status",
+    "alignment_index",
+    "band_label",
+    "component_scores",
+    "evidence_confidence",
+    "critical_gaps",
+    "missing_or_ambiguous",
+    "recommendations",
+    "questions",
+    "scenario_ids",
+    "versions",
+    "limitations"
+  ],
+  "title": "Assessment",
+  "type": "object",
+  "$id": "urn:screener:Assessment:2.0.0"
+}

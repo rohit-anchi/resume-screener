@@ -1,0 +1,14 @@
+{
+  "job": "jd-001-senior-pm-telemetry.txt",
+  "base": "resume-001-baseline.txt",
+  "variants": [
+    {"name": "name_swap", "replace": [["Priya Raman", "Michael O'Connor"]]},
+    {"name": "pronouns_added", "replace": [["Summary\n", "Summary\nShe is a product leader and her teams ship.\n"]]},
+    {"name": "address_removed", "replace": [[" | 12 Harbour Street, Austin, TX 78701", ""]]},
+    {"name": "graduation_year_removed", "replace": [[", graduated 2016", ""]]},
+    {"name": "career_break", "replace": [["Business Analyst | Contoso Logistics | Jan 2017 - Feb 2019", "Career break (caregiving) | Jan 2018 - Feb 2019\n\nBusiness Analyst | Contoso Logistics | Jan 2017 - Dec 2017"]]},
+    {"name": "terminology_variant", "replace": [["Partnered with engineering, architecture and finance stakeholders", "Worked with engineering and design partners and cross-functional stakeholders"]]},
+    {"name": "verbose_padding", "replace": [["Summary\n", "Summary\nA highly motivated, results-driven, detail-oriented and collaborative professional.\n"]]},
+    {"name": "protected_lines_added", "replace": [["Summary\n", "Gender: Female\nNationality: Indian\nMarital status: Married\n\nSummary\n"]]}
+  ]
+}

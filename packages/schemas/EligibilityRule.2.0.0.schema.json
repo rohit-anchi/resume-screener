@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "rule_id": {
+      "title": "Rule Id",
+      "type": "string"
+    },
+    "question_id": {
+      "title": "Question Id",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "operator": {
+      "enum": [
+        "equals",
+        "not_equals",
+        "in",
+        "gte",
+        "lte",
+        "truthy"
+      ],
+      "title": "Operator",
+      "type": "string"
+    },
+    "expected": {
+      "title": "Expected"
+    },
+    "legal_basis": {
+      "description": "Employer-declared job-related basis; required for auditability",
+      "title": "Legal Basis",
+      "type": "string"
+    }
+  },
+  "required": [
+    "rule_id",
+    "question_id",
+    "description",
+    "operator",
+    "expected",
+    "legal_basis"
+  ],
+  "title": "EligibilityRule",
+  "type": "object",
+  "$id": "urn:screener:EligibilityRule:2.0.0"
+}

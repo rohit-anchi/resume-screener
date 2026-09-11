@@ -1,0 +1,47 @@
+{
+  "description": "Every phrase must be classified into the expected category and must never reach scored employer content.",
+  "must_be_excluded_categories": [
+    "linkedin_nav", "linkedin_job_match", "linkedin_applicant_stats", "linkedin_candidate_seniority_stats",
+    "linkedin_candidate_education_stats", "linkedin_premium_insights", "linkedin_company_insights",
+    "linkedin_similar_jobs", "linkedin_advertisement", "linkedin_resume_promotion", "linkedin_people_suggestions",
+    "page_header_footer", "garbled_fragment", "unknown"
+  ],
+  "phrase_cases": [
+    {"phrase": "Job match is high, we can help you stand out", "expected_category": "linkedin_job_match"},
+    {"phrase": "Your profile and resume match the required qualifications well.", "expected_category": "linkedin_job_match"},
+    {"phrase": "You\u2019d be a top applicant and more likely to hear back", "expected_category": "linkedin_job_match"},
+    {"phrase": "BETA \u2022 Is this information helpful?", "expected_category": "linkedin_job_match"},
+    {"phrase": "Show match details", "expected_category": "linkedin_job_match"},
+    {"phrase": "Tailor my resume", "expected_category": "linkedin_job_match"},
+    {"phrase": "Over 100 people clicked apply", "expected_category": "linkedin_applicant_stats"},
+    {"phrase": "Candidates who clicked apply", "expected_category": "linkedin_applicant_stats"},
+    {"phrase": "331 total", "expected_category": "linkedin_applicant_stats"},
+    {"phrase": "8 in the past day", "expected_category": "linkedin_applicant_stats"},
+    {"phrase": "Based on LinkedIn data. Excludes subsidiaries.", "expected_category": "linkedin_applicant_stats"},
+    {"phrase": "Candidate seniority level", "expected_category": "linkedin_candidate_seniority_stats"},
+    {"phrase": "38% Senior level candidates", "expected_category": "linkedin_candidate_seniority_stats"},
+    {"phrase": "Candidate education level", "expected_category": "linkedin_candidate_education_stats"},
+    {"phrase": "22% have a Master of Business Administration", "expected_category": "linkedin_candidate_education_stats"},
+    {"phrase": "Exclusive Job Seeker Insights about Amber Electric", "expected_category": "linkedin_premium_insights"},
+    {"phrase": "Powered by Bing", "expected_category": "linkedin_premium_insights"},
+    {"phrase": "Show Premium Insights", "expected_category": "linkedin_premium_insights"},
+    {"phrase": "Company focus areas", "expected_category": "linkedin_company_insights"},
+    {"phrase": "Median employee tenure: 1.6 years", "expected_category": "linkedin_company_insights"},
+    {"phrase": "Amber Electric hires candidates from some of these companies and schools", "expected_category": "linkedin_company_insights"},
+    {"phrase": "Set alert for similar jobs", "expected_category": "linkedin_similar_jobs"},
+    {"phrase": "Hire a resume writer", "expected_category": "linkedin_resume_promotion"},
+    {"phrase": "Get a resume review", "expected_category": "linkedin_resume_promotion"},
+    {"phrase": "Put your best foot forward with your application", "expected_category": "linkedin_resume_promotion"},
+    {"phrase": "People you can reach out to", "expected_category": "linkedin_people_suggestions"},
+    {"phrase": "Company alum from Dell Technologies", "expected_category": "linkedin_people_suggestions"},
+    {"phrase": "ti I li ith l t G B ld 'll t l th t t t h th t d h l thi k d t", "expected_category": "garbled_fragment"},
+    {"phrase": "hi i h O i", "expected_category": "garbled_fragment"},
+    {"phrase": "9/9/26, 4:43 PM", "expected_category": "page_header_footer"},
+    {"phrase": "https://www.linkedin.com/jobs/view/4440679590/", "expected_category": "page_header_footer"},
+    {"phrase": "Director of Product | Amber Electric | LinkedIn", "expected_category": "page_header_footer"}
+  ],
+  "third_party_personal_data": {
+    "phrases": ["Mayan Agarwal", "Problem Solver", "\u2022 2nd"],
+    "requirement": "Third-party people suggestions must never enter scored content or any report."
+  }
+}

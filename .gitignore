@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+/data/
+/JDs/
+evaluation/reports/
+# local personal-data fixtures must never be committed
+*.local.pdf
+*.local.docx
+evaluation/fixtures/resumes/
+evaluation/fixtures/profiles/

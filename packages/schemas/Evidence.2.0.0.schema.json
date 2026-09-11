@@ -1,0 +1,214 @@
+{
+  "$defs": {
+    "EvidenceType": {
+      "enum": [
+        "employment_role",
+        "employment_achievement",
+        "skill_mention",
+        "education",
+        "certification",
+        "summary_statement",
+        "explicit_statement_of_absence"
+      ],
+      "title": "EvidenceType",
+      "type": "string"
+    },
+    "Period": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "start": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "YYYY-MM or None if unknown",
+          "title": "Start"
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "YYYY-MM, 'present', or None",
+          "title": "End"
+        },
+        "start_uncertain": {
+          "default": false,
+          "title": "Start Uncertain",
+          "type": "boolean"
+        },
+        "end_uncertain": {
+          "default": false,
+          "title": "End Uncertain",
+          "type": "boolean"
+        }
+      },
+      "title": "Period",
+      "type": "object"
+    },
+    "SourceLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "char_start": {
+          "title": "Char Start",
+          "type": "integer"
+        },
+        "char_end": {
+          "title": "Char End",
+          "type": "integer"
+        },
+        "text_span": {
+          "title": "Text Span",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "char_start",
+        "char_end",
+        "text_span"
+      ],
+      "title": "SourceLocation",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "candidate_id": {
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "evidence_type": {
+      "$ref": "#/$defs/EvidenceType"
+    },
+    "normalised_concepts": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Normalised Concepts",
+      "type": "array"
+    },
+    "source_location": {
+      "$ref": "#/$defs/SourceLocation"
+    },
+    "employer": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Employer"
+    },
+    "role": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Role"
+    },
+    "employment_period": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Period"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "quantified": {
+      "default": false,
+      "title": "Quantified",
+      "type": "boolean"
+    },
+    "inferred": {
+      "default": false,
+      "title": "Inferred",
+      "type": "boolean"
+    },
+    "confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "number"
+    }
+  },
+  "required": [
+    "evidence_id",
+    "candidate_id",
+    "evidence_type",
+    "normalised_concepts",
+    "source_location",
+    "confidence"
+  ],
+  "title": "Evidence",
+  "type": "object",
+  "$id": "urn:screener:Evidence:2.0.0"
+}

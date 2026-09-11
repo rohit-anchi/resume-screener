@@ -1,0 +1,188 @@
+{
+  "$defs": {
+    "MultiJobEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "job_document_id": {
+          "title": "Job Document Id",
+          "type": "string"
+        },
+        "employer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Employer"
+        },
+        "role_title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role Title"
+        },
+        "application_platform": {
+          "title": "Application Platform",
+          "type": "string"
+        },
+        "alignment_index": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Alignment Index"
+        },
+        "band_label": {
+          "title": "Band Label",
+          "type": "string"
+        },
+        "eligibility_status": {
+          "title": "Eligibility Status",
+          "type": "string"
+        },
+        "required_coverage": {
+          "title": "Required Coverage",
+          "type": "number"
+        },
+        "critical_gap_count": {
+          "title": "Critical Gap Count",
+          "type": "integer"
+        },
+        "tailoring_effort": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Tailoring Effort",
+          "type": "string"
+        },
+        "tailoring_reason": {
+          "title": "Tailoring Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "job_document_id",
+        "employer",
+        "role_title",
+        "application_platform",
+        "alignment_index",
+        "band_label",
+        "eligibility_status",
+        "required_coverage",
+        "critical_gap_count",
+        "tailoring_effort",
+        "tailoring_reason"
+      ],
+      "title": "MultiJobEntry",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "review_id": {
+      "title": "Review Id",
+      "type": "string"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "candidate_id": {
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/MultiJobEntry"
+      },
+      "title": "Entries",
+      "type": "array"
+    },
+    "common_requirements": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Common Requirements",
+      "type": "array"
+    },
+    "recurring_gaps": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Recurring Gaps",
+      "type": "array"
+    },
+    "domain_fit": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Domain Fit",
+      "type": "object"
+    },
+    "seniority_fit": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Seniority Fit",
+      "type": "object"
+    },
+    "suggested_priority": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Suggested Priority",
+      "type": "array"
+    },
+    "master_resume_improvements": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Master Resume Improvements",
+      "type": "array"
+    },
+    "caveat": {
+      "default": "Ranking reflects documented suitability against each job's stated requirements in the submitted documents. It is not a hiring probability and does not predict any employer's decision.",
+      "title": "Caveat",
+      "type": "string"
+    }
+  },
+  "required": [
+    "review_id",
+    "created_at",
+    "candidate_id",
+    "entries",
+    "common_requirements",
+    "recurring_gaps",
+    "domain_fit",
+    "seniority_fit",
+    "suggested_priority",
+    "master_resume_improvements"
+  ],
+  "title": "MultiJobReview",
+  "type": "object",
+  "$id": "urn:screener:MultiJobReview:2.0.0"
+}

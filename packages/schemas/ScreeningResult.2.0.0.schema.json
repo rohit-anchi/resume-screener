@@ -1,0 +1,1448 @@
+{
+  "$defs": {
+    "ApplicationAnswer": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "question_id": {
+          "title": "Question Id",
+          "type": "string"
+        },
+        "question_text": {
+          "title": "Question Text",
+          "type": "string"
+        },
+        "answer": {
+          "title": "Answer"
+        }
+      },
+      "required": [
+        "question_id",
+        "question_text",
+        "answer"
+      ],
+      "title": "ApplicationAnswer",
+      "type": "object"
+    },
+    "ComponentScore": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "component": {
+          "title": "Component",
+          "type": "string"
+        },
+        "weight_percent": {
+          "title": "Weight Percent",
+          "type": "number"
+        },
+        "raw_score": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Raw Score",
+          "type": "number"
+        },
+        "weighted_points": {
+          "title": "Weighted Points",
+          "type": "number"
+        },
+        "contributions": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Contribution"
+          },
+          "title": "Contributions",
+          "type": "array"
+        },
+        "excluded_requirement_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Excluded Requirement Ids",
+          "type": "array"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "weight_percent",
+        "raw_score",
+        "weighted_points",
+        "explanation"
+      ],
+      "title": "ComponentScore",
+      "type": "object"
+    },
+    "Contribution": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "match_id": {
+          "title": "Match Id",
+          "type": "string"
+        },
+        "points_available": {
+          "title": "Points Available",
+          "type": "number"
+        },
+        "points_awarded": {
+          "title": "Points Awarded",
+          "type": "number"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "match_id",
+        "points_available",
+        "points_awarded",
+        "explanation"
+      ],
+      "title": "Contribution",
+      "type": "object"
+    },
+    "DocumentFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceLocation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "DocumentFinding",
+      "type": "object"
+    },
+    "EligibilityFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/EligibilityStatus"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        },
+        "answer_used": {
+          "default": null,
+          "title": "Answer Used"
+        }
+      },
+      "required": [
+        "rule_id",
+        "status",
+        "explanation"
+      ],
+      "title": "EligibilityFinding",
+      "type": "object"
+    },
+    "EligibilityResult": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/EligibilityStatus"
+        },
+        "findings": {
+          "items": {
+            "$ref": "#/$defs/EligibilityFinding"
+          },
+          "title": "Findings",
+          "type": "array"
+        },
+        "uses_resume_inference": {
+          "const": false,
+          "default": false,
+          "title": "Uses Resume Inference",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status",
+        "findings"
+      ],
+      "title": "EligibilityResult",
+      "type": "object"
+    },
+    "EligibilityRule": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "question_id": {
+          "title": "Question Id",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "operator": {
+          "enum": [
+            "equals",
+            "not_equals",
+            "in",
+            "gte",
+            "lte",
+            "truthy"
+          ],
+          "title": "Operator",
+          "type": "string"
+        },
+        "expected": {
+          "title": "Expected"
+        },
+        "legal_basis": {
+          "description": "Employer-declared job-related basis; required for auditability",
+          "title": "Legal Basis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_id",
+        "question_id",
+        "description",
+        "operator",
+        "expected",
+        "legal_basis"
+      ],
+      "title": "EligibilityRule",
+      "type": "object"
+    },
+    "EligibilityStatus": {
+      "enum": [
+        "meets_declared_eligibility",
+        "does_not_meet_declared_eligibility",
+        "additional_information_required",
+        "not_evaluated",
+        "human_review_required"
+      ],
+      "title": "EligibilityStatus",
+      "type": "string"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "evidence_type": {
+          "$ref": "#/$defs/EvidenceType"
+        },
+        "normalised_concepts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Normalised Concepts",
+          "type": "array"
+        },
+        "source_location": {
+          "$ref": "#/$defs/SourceLocation"
+        },
+        "employer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employer"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Role"
+        },
+        "employment_period": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Period"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "quantified": {
+          "default": false,
+          "title": "Quantified",
+          "type": "boolean"
+        },
+        "inferred": {
+          "default": false,
+          "title": "Inferred",
+          "type": "boolean"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "candidate_id",
+        "evidence_type",
+        "normalised_concepts",
+        "source_location",
+        "confidence"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceType": {
+      "enum": [
+        "employment_role",
+        "employment_achievement",
+        "skill_mention",
+        "education",
+        "certification",
+        "summary_statement",
+        "explicit_statement_of_absence"
+      ],
+      "title": "EvidenceType",
+      "type": "string"
+    },
+    "Finding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "requirement_text": {
+          "title": "Requirement Text",
+          "type": "string"
+        },
+        "importance": {
+          "$ref": "#/$defs/Importance"
+        },
+        "status": {
+          "$ref": "#/$defs/MatchStatus"
+        },
+        "candidate_label": {
+          "title": "Candidate Label",
+          "type": "string"
+        },
+        "evidence_excerpts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Excerpts",
+          "type": "array"
+        },
+        "locations": {
+          "items": {
+            "$ref": "#/$defs/SourceLocation"
+          },
+          "title": "Locations",
+          "type": "array"
+        },
+        "confidence": {
+          "title": "Confidence",
+          "type": "number"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        },
+        "missing_information": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Missing Information"
+        },
+        "verification_question": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Verification Question"
+        },
+        "score_effect": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Score Effect"
+        },
+        "human_review_required": {
+          "title": "Human Review Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "requirement_text",
+        "importance",
+        "status",
+        "candidate_label",
+        "evidence_excerpts",
+        "locations",
+        "confidence",
+        "explanation",
+        "missing_information",
+        "verification_question",
+        "score_effect",
+        "human_review_required"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "HumanAction": {
+      "enum": [
+        "move_forward",
+        "hold_for_review",
+        "request_additional_information",
+        "decline_with_human_reason"
+      ],
+      "title": "HumanAction",
+      "type": "string"
+    },
+    "Importance": {
+      "enum": [
+        "eligibility",
+        "required",
+        "preferred",
+        "contextual",
+        "unscorable"
+      ],
+      "title": "Importance",
+      "type": "string"
+    },
+    "Match": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "match_id": {
+          "title": "Match Id",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "match_status": {
+          "$ref": "#/$defs/MatchStatus"
+        },
+        "match_type": {
+          "$ref": "#/$defs/MatchType"
+        },
+        "coverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Coverage",
+          "type": "number"
+        },
+        "evidence_strength": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Evidence Strength",
+          "type": "number"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "verification_question": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Verification Question"
+        },
+        "human_review_required": {
+          "default": false,
+          "title": "Human Review Required",
+          "type": "boolean"
+        },
+        "computed_duration_months": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Computed Duration Months"
+        }
+      },
+      "required": [
+        "match_id",
+        "requirement_id",
+        "evidence_ids",
+        "match_status",
+        "match_type",
+        "coverage",
+        "evidence_strength",
+        "confidence",
+        "reason"
+      ],
+      "title": "Match",
+      "type": "object"
+    },
+    "MatchStatus": {
+      "enum": [
+        "confirmed",
+        "strong",
+        "partial",
+        "weak",
+        "no_evidence_located",
+        "contradictory",
+        "not_assessable",
+        "human_review_required"
+      ],
+      "title": "MatchStatus",
+      "type": "string"
+    },
+    "MatchType": {
+      "enum": [
+        "direct",
+        "equivalent_term",
+        "transferable",
+        "none"
+      ],
+      "title": "MatchType",
+      "type": "string"
+    },
+    "Mode": {
+      "enum": [
+        "candidate",
+        "recruiter_assist",
+        "evaluation"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "ParseabilityReport": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "text_extraction_success": {
+          "title": "Text Extraction Success",
+          "type": "boolean"
+        },
+        "image_only_content": {
+          "title": "Image Only Content",
+          "type": "boolean"
+        },
+        "ocr_required": {
+          "title": "Ocr Required",
+          "type": "boolean"
+        },
+        "ocr_available": {
+          "default": false,
+          "title": "Ocr Available",
+          "type": "boolean"
+        },
+        "name_extracted": {
+          "title": "Name Extracted",
+          "type": "boolean"
+        },
+        "contact_fields_extracted": {
+          "title": "Contact Fields Extracted",
+          "type": "boolean"
+        },
+        "employment_history_extracted": {
+          "title": "Employment History Extracted",
+          "type": "boolean"
+        },
+        "dates_extracted": {
+          "title": "Dates Extracted",
+          "type": "boolean"
+        },
+        "education_extracted": {
+          "title": "Education Extracted",
+          "type": "boolean"
+        },
+        "certifications_extracted": {
+          "title": "Certifications Extracted",
+          "type": "boolean"
+        },
+        "section_order_clear": {
+          "title": "Section Order Clear",
+          "type": "boolean"
+        },
+        "table_or_column_interference": {
+          "title": "Table Or Column Interference",
+          "type": "boolean"
+        },
+        "chronology_conflicts": {
+          "title": "Chronology Conflicts",
+          "type": "integer"
+        },
+        "missing_dates": {
+          "title": "Missing Dates",
+          "type": "integer"
+        },
+        "duplicate_content": {
+          "title": "Duplicate Content",
+          "type": "boolean"
+        },
+        "injection_suspected": {
+          "title": "Injection Suspected",
+          "type": "boolean"
+        },
+        "hidden_text_suspected": {
+          "title": "Hidden Text Suspected",
+          "type": "boolean"
+        },
+        "parseability_score": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Parseability Score",
+          "type": "number"
+        },
+        "notes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "document_id",
+        "text_extraction_success",
+        "image_only_content",
+        "ocr_required",
+        "name_extracted",
+        "contact_fields_extracted",
+        "employment_history_extracted",
+        "dates_extracted",
+        "education_extracted",
+        "certifications_extracted",
+        "section_order_clear",
+        "table_or_column_interference",
+        "chronology_conflicts",
+        "missing_dates",
+        "duplicate_content",
+        "injection_suspected",
+        "hidden_text_suspected",
+        "parseability_score"
+      ],
+      "title": "ParseabilityReport",
+      "type": "object"
+    },
+    "Period": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "start": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "YYYY-MM or None if unknown",
+          "title": "Start"
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "YYYY-MM, 'present', or None",
+          "title": "End"
+        },
+        "start_uncertain": {
+          "default": false,
+          "title": "Start Uncertain",
+          "type": "boolean"
+        },
+        "end_uncertain": {
+          "default": false,
+          "title": "End Uncertain",
+          "type": "boolean"
+        }
+      },
+      "title": "Period",
+      "type": "object"
+    },
+    "PlatformProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "profile_id": {
+          "title": "Profile Id",
+          "type": "string"
+        },
+        "display_name": {
+          "title": "Display Name",
+          "type": "string"
+        },
+        "platform": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Platform"
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "type": "string"
+        },
+        "emphasis": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Emphasis",
+          "type": "array"
+        },
+        "scenarios": {
+          "items": {
+            "$ref": "#/$defs/Scenario"
+          },
+          "title": "Scenarios",
+          "type": "array"
+        },
+        "report_sections_emphasised": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Report Sections Emphasised",
+          "type": "array"
+        }
+      },
+      "required": [
+        "profile_id",
+        "display_name",
+        "platform",
+        "disclaimer",
+        "emphasis",
+        "scenarios"
+      ],
+      "title": "PlatformProfile",
+      "type": "object"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "normalised_concept": {
+          "title": "Normalised Concept",
+          "type": "string"
+        },
+        "alternative_concepts": {
+          "description": "OR-alternatives when the requirement says 'X or Y'",
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternative Concepts",
+          "type": "array"
+        },
+        "category": {
+          "$ref": "#/$defs/RequirementCategory"
+        },
+        "importance": {
+          "$ref": "#/$defs/Importance"
+        },
+        "evidence_type": {
+          "title": "Evidence Type",
+          "type": "string"
+        },
+        "minimum_threshold": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Threshold"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_location": {
+          "$ref": "#/$defs/SourceLocation"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "human_review_required": {
+          "default": false,
+          "title": "Human Review Required",
+          "type": "boolean"
+        },
+        "review_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Reason"
+        },
+        "extraction_method": {
+          "default": "rule",
+          "enum": [
+            "rule",
+            "lexicon",
+            "llm_proposed_validated",
+            "human"
+          ],
+          "title": "Extraction Method",
+          "type": "string"
+        },
+        "weight": {
+          "default": 1.0,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "text",
+        "normalised_concept",
+        "category",
+        "importance",
+        "evidence_type",
+        "source_location",
+        "confidence"
+      ],
+      "title": "Requirement",
+      "type": "object"
+    },
+    "RequirementCategory": {
+      "enum": [
+        "eligibility",
+        "required_experience",
+        "preferred_experience",
+        "skill",
+        "qualification",
+        "certification",
+        "domain_knowledge",
+        "leadership",
+        "delivery",
+        "communication",
+        "stakeholder_management",
+        "technical_knowledge",
+        "location_or_work_arrangement",
+        "work_authorisation",
+        "travel",
+        "other"
+      ],
+      "title": "RequirementCategory",
+      "type": "string"
+    },
+    "Scenario": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "scenario_id": {
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "delivery_label": {
+          "enum": [
+            "DOCUMENTED",
+            "CONFIGURATION-DEPENDENT",
+            "OPTIONAL",
+            "THIRD-PARTY",
+            "COMMON PRACTICE",
+            "UNVERIFIED"
+          ],
+          "title": "Delivery Label",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "emphasis": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Emphasis",
+          "type": "array"
+        }
+      },
+      "required": [
+        "scenario_id",
+        "title",
+        "description",
+        "delivery_label",
+        "claim_ids"
+      ],
+      "title": "Scenario",
+      "type": "object"
+    },
+    "ScoreResult": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "alignment_index": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Alignment Index",
+          "type": "number"
+        },
+        "band_label": {
+          "title": "Band Label",
+          "type": "string"
+        },
+        "band_caveat": {
+          "title": "Band Caveat",
+          "type": "string"
+        },
+        "components": {
+          "items": {
+            "$ref": "#/$defs/ComponentScore"
+          },
+          "title": "Components",
+          "type": "array"
+        },
+        "overall_confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Overall Confidence",
+          "type": "number"
+        },
+        "rubric_id": {
+          "title": "Rubric Id",
+          "type": "string"
+        },
+        "rubric_version": {
+          "title": "Rubric Version",
+          "type": "string"
+        },
+        "rubric_hash": {
+          "title": "Rubric Hash",
+          "type": "string"
+        },
+        "qualification_scoring_suppressed": {
+          "default": false,
+          "title": "Qualification Scoring Suppressed",
+          "type": "boolean"
+        },
+        "suppression_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suppression Reason"
+        }
+      },
+      "required": [
+        "alignment_index",
+        "band_label",
+        "band_caveat",
+        "components",
+        "overall_confidence",
+        "rubric_id",
+        "rubric_version",
+        "rubric_hash"
+      ],
+      "title": "ScoreResult",
+      "type": "object"
+    },
+    "ScreeningRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "job_id": {
+          "title": "Job Id",
+          "type": "string"
+        },
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "screening_profile": {
+          "default": "platform_neutral",
+          "title": "Screening Profile",
+          "type": "string"
+        },
+        "rubric_id": {
+          "default": "default",
+          "title": "Rubric Id",
+          "type": "string"
+        },
+        "mode": {
+          "$ref": "#/$defs/Mode",
+          "default": "candidate"
+        },
+        "application_answers": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ApplicationAnswer"
+          },
+          "title": "Application Answers",
+          "type": "array"
+        },
+        "employer_rules": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/EligibilityRule"
+          },
+          "title": "Employer Rules",
+          "type": "array"
+        },
+        "requested_outputs": {
+          "default": [
+            "alignment_report",
+            "parseability_report",
+            "evidence_map",
+            "platform_scenarios"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "title": "Requested Outputs",
+          "type": "array"
+        },
+        "initiated_by": {
+          "default": "anonymous",
+          "title": "Initiated By",
+          "type": "string"
+        }
+      },
+      "required": [
+        "job_id",
+        "candidate_id"
+      ],
+      "title": "ScreeningRequest",
+      "type": "object"
+    },
+    "SourceLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "document_id": {
+          "title": "Document Id",
+          "type": "string"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "char_start": {
+          "title": "Char Start",
+          "type": "integer"
+        },
+        "char_end": {
+          "title": "Char End",
+          "type": "integer"
+        },
+        "text_span": {
+          "title": "Text Span",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "char_start",
+        "char_end",
+        "text_span"
+      ],
+      "title": "SourceLocation",
+      "type": "object"
+    },
+    "Threshold": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "unit": {
+          "enum": [
+            "years",
+            "months",
+            "count"
+          ],
+          "title": "Unit",
+          "type": "string"
+        },
+        "comparator": {
+          "default": ">=",
+          "enum": [
+            ">=",
+            ">",
+            "<=",
+            "==",
+            "<"
+          ],
+          "title": "Comparator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "Threshold",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "screening_id": {
+      "title": "Screening Id",
+      "type": "string"
+    },
+    "request": {
+      "$ref": "#/$defs/ScreeningRequest"
+    },
+    "job_title": {
+      "title": "Job Title",
+      "type": "string"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/Requirement"
+      },
+      "title": "Requirements",
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "matches": {
+      "items": {
+        "$ref": "#/$defs/Match"
+      },
+      "title": "Matches",
+      "type": "array"
+    },
+    "eligibility": {
+      "$ref": "#/$defs/EligibilityResult"
+    },
+    "score": {
+      "$ref": "#/$defs/ScoreResult"
+    },
+    "parseability": {
+      "$ref": "#/$defs/ParseabilityReport"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/Finding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "scenarios": {
+      "items": {
+        "$ref": "#/$defs/Scenario"
+      },
+      "title": "Scenarios",
+      "type": "array"
+    },
+    "profile": {
+      "$ref": "#/$defs/PlatformProfile"
+    },
+    "recommended_human_action": {
+      "$ref": "#/$defs/HumanAction"
+    },
+    "review_triggers": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Review Triggers",
+      "type": "array"
+    },
+    "document_findings": {
+      "items": {
+        "$ref": "#/$defs/DocumentFinding"
+      },
+      "title": "Document Findings",
+      "type": "array"
+    },
+    "versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Versions",
+      "type": "object"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "screening_id",
+    "request",
+    "job_title",
+    "requirements",
+    "evidence",
+    "matches",
+    "eligibility",
+    "score",
+    "parseability",
+    "findings",
+    "scenarios",
+    "profile",
+    "recommended_human_action",
+    "review_triggers",
+    "document_findings",
+    "versions",
+    "limitations",
+    "created_at"
+  ],
+  "title": "ScreeningResult",
+  "type": "object",
+  "$id": "urn:screener:ScreeningResult:2.0.0"
+}

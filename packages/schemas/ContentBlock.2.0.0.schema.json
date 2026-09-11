@@ -1,0 +1,143 @@
+{
+  "$defs": {
+    "BlockCategory": {
+      "description": "Classification of every extracted content block.\n\n`allowed()` members are employer job content; only `requirement_bearing()` members\nmay enter requirement extraction and scoring.",
+      "enum": [
+        "job_header",
+        "employer_about",
+        "employer_role_overview",
+        "employer_team",
+        "employer_responsibilities",
+        "employer_requirements",
+        "employer_preferred",
+        "employer_work_arrangement",
+        "employer_eligibility",
+        "employer_compensation",
+        "employer_process",
+        "employer_application_instructions",
+        "employer_eeo",
+        "employer_ai_disclosure",
+        "linkedin_nav",
+        "linkedin_job_match",
+        "linkedin_applicant_stats",
+        "linkedin_candidate_seniority_stats",
+        "linkedin_candidate_education_stats",
+        "linkedin_premium_insights",
+        "linkedin_company_insights",
+        "linkedin_similar_jobs",
+        "linkedin_advertisement",
+        "linkedin_resume_promotion",
+        "linkedin_people_suggestions",
+        "page_header_footer",
+        "garbled_fragment",
+        "unknown"
+      ],
+      "title": "BlockCategory",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "block_id": {
+      "title": "Block Id",
+      "type": "string"
+    },
+    "page": {
+      "title": "Page",
+      "type": "integer"
+    },
+    "order": {
+      "title": "Order",
+      "type": "integer"
+    },
+    "y": {
+      "title": "Y",
+      "type": "number"
+    },
+    "x": {
+      "title": "X",
+      "type": "number"
+    },
+    "max_font_size": {
+      "title": "Max Font Size",
+      "type": "number"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "category": {
+      "$ref": "#/$defs/BlockCategory"
+    },
+    "allowed_for_requirements": {
+      "title": "Allowed For Requirements",
+      "type": "boolean"
+    },
+    "classification_reason": {
+      "title": "Classification Reason",
+      "type": "string"
+    },
+    "classifier_rule": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Classifier Rule"
+    },
+    "review_required": {
+      "default": false,
+      "title": "Review Required",
+      "type": "boolean"
+    },
+    "char_start": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Offset in employer_text when included",
+      "title": "Char Start"
+    },
+    "char_end": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Char End"
+    }
+  },
+  "required": [
+    "block_id",
+    "page",
+    "order",
+    "y",
+    "x",
+    "max_font_size",
+    "text",
+    "category",
+    "allowed_for_requirements",
+    "classification_reason"
+  ],
+  "title": "ContentBlock",
+  "type": "object",
+  "$id": "urn:screener:ContentBlock:2.0.0"
+}

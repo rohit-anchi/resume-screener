@@ -1,0 +1,67 @@
+{
+  "C1": {
+    "index": 86.1,
+    "components": {
+      "required_qualification_coverage": 86.5,
+      "relevant_experience_alignment": 90.8,
+      "demonstrated_skill_evidence": 80.4,
+      "leadership_and_operating_scope": 85.0,
+      "achievement_and_impact_evidence": 79.0,
+      "preferred_qualification_coverage": 78.3,
+      "application_completeness": 100.0,
+      "resume_parseability": 100.0
+    }
+  },
+  "C2": {
+    "index": 86.1,
+    "components": {
+      "required_qualification_coverage": 86.5,
+      "relevant_experience_alignment": 90.8,
+      "demonstrated_skill_evidence": 80.4,
+      "leadership_and_operating_scope": 85.0,
+      "achievement_and_impact_evidence": 79.0,
+      "preferred_qualification_coverage": 78.3,
+      "application_completeness": 100.0,
+      "resume_parseability": 100.0
+    }
+  },
+  "C3": {
+    "index": 82.1,
+    "components": {
+      "required_qualification_coverage": 86.5,
+      "relevant_experience_alignment": 90.8,
+      "demonstrated_skill_evidence": 80.4,
+      "leadership_and_operating_scope": 85.0,
+      "achievement_and_impact_evidence": 79.0,
+      "preferred_qualification_coverage": 78.3,
+      "application_completeness": 0.0,
+      "resume_parseability": 100.0
+    }
+  },
+  "C4": {
+    "index": 32.7,
+    "components": {
+      "required_qualification_coverage": 14.4,
+      "relevant_experience_alignment": 25.0,
+      "demonstrated_skill_evidence": 40.3,
+      "leadership_and_operating_scope": 0.0,
+      "achievement_and_impact_evidence": 61.0,
+      "preferred_qualification_coverage": 100.0,
+      "application_completeness": 100.0,
+      "resume_parseability": 100.0
+    }
+  },
+  "C5": {
+    "index": 6.3,
+    "components": {
+      "required_qualification_coverage": 0.0,
+      "relevant_experience_alignment": 0.0,
+      "demonstrated_skill_evidence": 0.0,
+      "leadership_and_operating_scope": 0.0,
+      "achievement_and_impact_evidence": 0.0,
+      "preferred_qualification_coverage": 0.0,
+      "application_completeness": 100.0,
+      "resume_parseability": 77.8
+    }
+  }
+}

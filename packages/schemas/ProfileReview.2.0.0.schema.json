@@ -1,0 +1,155 @@
+{
+  "$defs": {
+    "ProfileComparisonRow": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "2.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "dimension": {
+          "title": "Dimension",
+          "type": "string"
+        },
+        "resume_evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Resume Evidence"
+        },
+        "profile_evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Profile Evidence"
+        },
+        "status": {
+          "enum": [
+            "aligned",
+            "missing_in_profile",
+            "missing_in_resume",
+            "potential_contradiction",
+            "not_assessable"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dimension",
+        "resume_evidence",
+        "profile_evidence",
+        "status",
+        "explanation"
+      ],
+      "title": "ProfileComparisonRow",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "2.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "review_id": {
+      "title": "Review Id",
+      "type": "string"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "candidate_id": {
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "profile_document_id": {
+      "title": "Profile Document Id",
+      "type": "string"
+    },
+    "resume_document_id": {
+      "title": "Resume Document Id",
+      "type": "string"
+    },
+    "authorisation_confirmed": {
+      "title": "Authorisation Confirmed",
+      "type": "boolean"
+    },
+    "rows": {
+      "items": {
+        "$ref": "#/$defs/ProfileComparisonRow"
+      },
+      "title": "Rows",
+      "type": "array"
+    },
+    "missing_profile_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Profile Evidence",
+      "type": "array"
+    },
+    "missing_resume_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Resume Evidence",
+      "type": "array"
+    },
+    "potential_contradictions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Potential Contradictions",
+      "type": "array"
+    },
+    "target_market_recommendations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Target Market Recommendations",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "review_id",
+    "created_at",
+    "candidate_id",
+    "profile_document_id",
+    "resume_document_id",
+    "authorisation_confirmed",
+    "rows",
+    "missing_profile_evidence",
+    "missing_resume_evidence",
+    "potential_contradictions",
+    "target_market_recommendations",
+    "limitations"
+  ],
+  "title": "ProfileReview",
+  "type": "object",
+  "$id": "urn:screener:ProfileReview:2.0.0"
+}

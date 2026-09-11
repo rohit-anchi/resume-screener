@@ -1,0 +1,18 @@
+Product Manager, Data Platform
+
+Responsibilities
+- Define and prioritise the backlog for data pipeline and analytics products.
+- Conduct customer discovery and translate insights into requirements.
+
+Requirements
+- At least three years of product management or project management experience.
+- Hands-on familiarity with SQL and analytics tooling.
+- Experience with cloud platforms (AWS, Azure or GCP).
+- Excellent written communication, including PRDs.
+
+Nice to have
+- PMP or Scrum certification.
+- Master's degree.
+
+Eligibility
+- Must be authorised to work in the country of employment.

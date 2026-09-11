@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/platform-capability-claim.json",
+  "title": "Platform capability claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "platform", "capability", "claim", "label", "screeningStage", "delivery", "actor", "input", "processing", "output", "possibleAction", "automationLevel", "evidence", "confidence", "limitations", "lastVerified"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[A-Z]+-C[0-9]{2,}$"},
+    "platform": {"enum": ["Greenhouse", "Lever", "Workday Recruiting", "SAP SuccessFactors Recruiting"]},
+    "capability": {"type": "string", "minLength": 1},
+    "claim": {"type": "string", "minLength": 1},
+    "label": {"enum": ["DOCUMENTED", "CONFIGURATION-DEPENDENT", "OPTIONAL", "THIRD-PARTY", "COMMON PRACTICE", "UNVERIFIED"]},
+    "screeningStage": {"type": "string"},
+    "delivery": {"enum": ["native", "optional", "configured", "integrated", "practice", "unverified"]},
+    "actor": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "input": {"type": "array", "items": {"type": "string"}},
+    "processing": {"type": "string"},
+    "output": {"type": "array", "items": {"type": "string"}},
+    "possibleAction": {"type": "array", "items": {"type": "string"}},
+    "automationLevel": {"type": "integer", "minimum": 0, "maximum": 5},
+    "licenseOrConfiguration": {"type": ["string", "null"]},
+    "evidence": {"type": "array", "items": {"type": "object", "required": ["sourceId", "reference"], "properties": {"sourceId": {"type": "string"}, "reference": {"type": "string"}}, "additionalProperties": false}, "minItems": 1},
+    "confidence": {"enum": ["Confirmed", "Strong", "Moderate", "Weak", "Unknown"]},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "lastVerified": {"type": "string", "format": "date"}
+  }
+}
